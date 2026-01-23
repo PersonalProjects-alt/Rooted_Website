@@ -1,0 +1,36 @@
+.navbar {
+    background-color: #f8f8f8;
+    position: fixed;
+    max-height: 100px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    
+}
+
+.navbar_child{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+
+}
+
+.Rooted_title{
+    font-family: "Montserrat Variable";
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.login_signInButton_div{
+    
+}
+
+.login_signin_buttons {
+    background-color: #333333;
+    border-radius: 30px;
+    color: white;
+}
