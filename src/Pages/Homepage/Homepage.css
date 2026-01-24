@@ -1,3 +1,47 @@
 #root {
 font-family: "Montserrat Variable";
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.section1 {
+    padding-top: 106px;
+    position: relative;
+    min-height: 70vh;
+
+    background-image: url("../../assets/HomepageImg1.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: none;
+}
+
+.section1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* soft blur */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter : blur(6px);
+
+  /* white/cream fade like your image */
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(255, 255, 255, 0.78) 40%,
+    rgba(255, 255, 255, 0.55) 65%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+
+  z-index: 0;
+}
+
+.section1 > * {
+  position: relative;
+  z-index: 0;
+}
