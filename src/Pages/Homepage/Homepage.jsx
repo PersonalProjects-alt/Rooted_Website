@@ -10,28 +10,28 @@ import heroImage from '../../assets/HomepageImg2.png'
 import leafIcon from "../../assets/leaf.png";
 import windIcon from "../../assets/wind.png";
 import sunIcon from "../../assets/sunny_day.png";
-import curatedStyle1  from "../../assets/curatedstyle1.png"
-import curatedStyle2  from "../../assets/curatedstyle2.png"
-import curatedStyle3  from "../../assets/curatedstyle3.png"
+import curatedStyle1 from "../../assets/curatedstyle1.png"
+import curatedStyle2 from "../../assets/curatedstyle2.png"
+import curatedStyle3 from "../../assets/curatedstyle3.png"
 
 import { AnimatePresence, motion } from "motion/react"
 
 const RootedKeyPoints = [
-  { image: leafIcon, title: "Natural", desc: "Celebrating the inherent beauty of type 3-4 textures." }, 
-  { image: windIcon, title: "Breathable", desc: "Routines that allow your hair and scalp to thrive." }, 
-  { image: sunIcon, title: "Radiant", desc: "Confidence rooted in deep understanding and care." }, 
+  { image: leafIcon, title: "Natural", desc: "Celebrating the inherent beauty of type 3-4 textures." },
+  { image: windIcon, title: "Breathable", desc: "Routines that allow your hair and scalp to thrive." },
+  { image: sunIcon, title: "Radiant", desc: "Confidence rooted in deep understanding and care." },
 
 ]
 
 const CuratedStyles = [
-  {image: curatedStyle1, title: "Protective Braids", desc: "Low Maintenance" },
-  {image: curatedStyle2, title: "Natural Coil Definition", desc: "Daily Care" },
-  {image: curatedStyle3, title: "Twists Outs", desc: "Volume & Definition" },
+  { image: curatedStyle1, title: "Protective Braids", desc: "Low Maintenance" },
+  { image: curatedStyle2, title: "Natural Coil Definition", desc: "Daily Care" },
+  { image: curatedStyle3, title: "Twists Outs", desc: "Volume & Definition" },
 ]
 
 function App() {
   return (
-    <div> 
+    <div>
       <Header />
       <div className='section1'>
         <div className='homepage_hero_div'>
@@ -41,11 +41,11 @@ function App() {
             <p className='title_description'>A sanctuary for type 3–4 hair. Discover personalized guidance, expert education, and a supportive community.</p>
             <div className='begin_journey_div'>
               <button className='begin_journey_button'>Begin Journey</button>
-              <button className='begin_journey_button' style={{backgroundColor: 'transparent',  color: '#6ea2e0',  border: "1px solid rgba(0,0,0,0.18)" }}>Explore Gallery</button>
+              <button className='begin_journey_button' style={{ backgroundColor: 'transparent', color: '#6ea2e0', border: "1px solid rgba(0,0,0,0.18)" }}>Explore Gallery</button>
             </div>
           </div>
           <div className="hero_card">
-            <img className= 'hero_image' src={heroImage} width={400} height={400}/>
+            <img className='hero_image' src={heroImage} width={400} height={400} />
           </div>
         </div>
       </div>
@@ -79,9 +79,36 @@ function App() {
         </div>
       </div>
 
-      <div className='section3'>
-        <div className='section_layout'>
-          
+      <div className="section3">
+        <div className="section3_layout">
+          <div className="section3_header">
+            <div className="section3_heading">
+              <p className="section3_title">Curated Styles</p>
+              <p className="section3_subtitle">Discover looks tailored to your lifestyle.</p>
+            </div>
+
+            <button className="section3_viewall_btn">View All Styles</button>
+          </div>
+
+          <div className="styles_row">
+            {CuratedStyles.map((item, index) => (
+              <motion.div 
+              className="style_card" 
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+              >
+                <div className="style_img_wrap">
+                  <img src={item.image} alt={item.title} className="style_img" />
+                </div>
+
+                <p className="style_title">{item.title}</p>
+                <p className="style_desc">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
