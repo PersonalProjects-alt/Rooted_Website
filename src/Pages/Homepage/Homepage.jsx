@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './Homepage.css'
 import './HomepageSection2.css'
 import './HomepageSection3.css'
+import './HomepageSection4.css'
 import "@fontsource-variable/montserrat"; // Defaults to wght axis
 import "@fontsource-variable/montserrat/wght.css"; // Specify axis
 import "@fontsource-variable/montserrat/wght-italic.css"; // Specify axis and style
@@ -32,7 +33,6 @@ const CuratedStyles = [
 function App() {
   return (
     <div>
-      <Header />
       <div className='section1'>
         <div className='homepage_hero_div'>
           <div className='text_title_div'>
@@ -110,6 +110,19 @@ function App() {
             ))}
           </div>
         </div>
+      </div>
+
+
+      <div className='section4'>
+        <div className='section4_layout'>
+          <p className='section4_title'>Begin your Transformation</p>
+          <p className='section4_subtitle'>Start your journey by completing the AI powered reccomendation survey so we can provide personalized guidance to better tailor your hair journey</p>
+          <div className='button_div'>
+            <button className='get_started_button'>Get Started Free</button>
+          </div>
+
+        </div>
+
       </div>
     </div>
   )

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./header.css";
 import Hamburger from "hamburger-react";
 import { AnimatePresence, motion } from "motion/react"
+import { Link } from "react-router-dom";
 
 function header() {
   const [isOpen, setOpen] = useState(false);
@@ -43,10 +44,11 @@ function header() {
             exit={{ opacity: 0, scale: 0.98, y: -8 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
         >
-          <a className="menu_item" href="#">Home</a>
+          <Link className="menu_item" to= "/">Home</Link>
           <a className="menu_item" href="#">Stylists</a>
           <a className="menu_item" href="#">HairStyle Education</a>
           <a className="menu_item" href="#">About</a>
+          <Link className="menu_item" to = "/Ai_info_Page">AI Recomendations</Link>
         </motion.div>
       )}
       </AnimatePresence>
