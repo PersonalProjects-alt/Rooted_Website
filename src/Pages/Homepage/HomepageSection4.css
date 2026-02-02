@@ -1,6 +1,6 @@
 
 .section4 {
-    padding: 70px;
+    padding: 50px;
     background-color: #a08c7d;
     
 }
@@ -40,7 +40,7 @@
 .button_div{
     display: flex;
     justify-content: center;
-    margin-top: 90px;
+    margin-top: 60px;
 
 }
 
