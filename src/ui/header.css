@@ -72,6 +72,12 @@ margin-left: 40px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
+@media screen and (max-width: 575px) {
+    .menu_div{
+        height: 240px;
+    }
+}
+
 .menu_item {
     color: black;
     text-decoration: none;
@@ -84,4 +90,12 @@ margin-left: 40px;
     margin-left: 1px;
     margin-top: 15px;
     }
+}
+
+.navbar_line{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    width: 100%;
 }

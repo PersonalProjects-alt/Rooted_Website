@@ -120,6 +120,7 @@ margin-right: 30px;
 .box {
     border-radius: 30px;
     padding: 20px;
+    height: 300px;
 }
 
 .box_title{
@@ -175,6 +176,7 @@ margin-bottom: 50px;
     background-color: #f7eee3;
     border: 1px #f6ede2;
     padding: 15px;
+    height: 190px;
     
 }
 
