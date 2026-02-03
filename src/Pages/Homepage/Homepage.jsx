@@ -16,6 +16,7 @@ import curatedStyle2 from "../../assets/curatedstyle2.png"
 import curatedStyle3 from "../../assets/curatedstyle3.png"
 
 import { AnimatePresence, motion } from "motion/react"
+import { UserAuth } from '../../context/AuthContext.jsx'
 
 const RootedKeyPoints = [
   { image: leafIcon, title: "Natural", desc: "Celebrating the inherent beauty of type 3-4 textures." },

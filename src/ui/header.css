@@ -60,7 +60,7 @@ margin-left: 40px;
     max-width: 200px;
     z-index: 10;
     position: absolute;
-    height: 180px;
+    height: 280px;
     display: flex;
     flex-direction: column;
     right: 20px;
@@ -70,12 +70,6 @@ margin-left: 40px;
     gap: 20px;
     padding: 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-}
-
-@media screen and (max-width: 575px) {
-    .menu_div{
-        height: 240px;
-    }
 }
 
 .menu_item {

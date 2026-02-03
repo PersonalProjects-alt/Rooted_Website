@@ -3,15 +3,28 @@ import "./header.css";
 import Hamburger from "hamburger-react";
 import { AnimatePresence, motion } from "motion/react"
 import { Link } from "react-router-dom";
+import { UserAuth } from '../context/AuthContext.jsx'
+
 
 function header() {
   const [isOpen, setOpen] = useState(false);
   const isMobile = window.matchMedia("(max-width: 575px)").matches;
+
+  const {user, logOut} = UserAuth();
+
+  const handleSignOut = async () => {
+    try{
+      await logOut();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   return (
     <header className="navbar">
       <div className="navbar_child">
         <p className="Rooted_title">Rooted</p>
-        {isMobile ? null :  (
+        {/* {isMobile ? null :  (
           <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', position: 'fixed', right: '80px' }}>
           <motion.button 
             whileHover={{ scale: 0.95 }}
@@ -24,7 +37,7 @@ function header() {
             className="login_signin_buttons">Sign Up</motion.button>
         </div>
 
-        )}
+        )} */}
 
           <div className="hamburger">
             <Hamburger
@@ -36,7 +49,7 @@ function header() {
             />
           </div>
       </div>
-      {isMobile ? (
+      {user?.displayName ? (
         <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div 
@@ -49,10 +62,11 @@ function header() {
             <Link className="menu_item" to= "/">Home</Link>
             <a className="menu_item" href="#">About</a>
             <Link className="menu_item" to = "/Ai_info_Page">AI Recomendations</Link>
+            <Link className="menu_item" to= "/user_dashboard">Dashboard</Link>
             <a className="menu_item" href="#">Stylists</a>
             <a className="menu_item" href="#">HairStyle Education</a>
             <hr className="navbar_line"/>
-            <Link className="menu_item" to = "SignIn_Page">Sign Up</Link>
+            <button className="menu_item" onClick={handleSignOut}>LogOut</button>
           </motion.div>
         )}
         </AnimatePresence>
@@ -72,8 +86,11 @@ function header() {
             <Link className="menu_item" to= "/">Home</Link>
             <a className="menu_item" href="#">About</a>
             <Link className="menu_item" to = "/Ai_info_Page">AI Recomendations</Link>
+            <Link className="menu_item" to= "/user_dashboard">Dashboard</Link>
             <a className="menu_item" href="#">Stylists</a>
             <a className="menu_item" href="#">HairStyle Education</a>
+            <hr className="navbar_line"/>
+            <Link className="menu_item" to = "/SignIn_Page">Sign In</Link>
           </motion.div>
         )}
         </AnimatePresence>
