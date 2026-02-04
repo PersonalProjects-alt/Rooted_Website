@@ -14,8 +14,6 @@ function SignIn_Page() {
         } catch (e) {
             console.log(e);
         }
-
-        
     }
 
     useEffect(() => {
