@@ -6,7 +6,6 @@ import './HomepageSection4.css'
 import "@fontsource-variable/montserrat"; // Defaults to wght axis
 import "@fontsource-variable/montserrat/wght.css"; // Specify axis
 import "@fontsource-variable/montserrat/wght-italic.css"; // Specify axis and style
-import Header from '../../ui/header.jsx'
 import heroImage from '../../assets/HomepageImg2.png'
 import leafIcon from "../../assets/leaf.png";
 import windIcon from "../../assets/wind.png";
@@ -17,6 +16,7 @@ import curatedStyle3 from "../../assets/curatedstyle3.png"
 
 import { AnimatePresence, motion } from "motion/react"
 import { UserAuth } from '../../context/AuthContext.jsx'
+import { useNavigate } from "react-router-dom";
 
 const RootedKeyPoints = [
   { image: leafIcon, title: "Natural", desc: "Celebrating the inherent beauty of type 3-4 textures." },
@@ -32,6 +32,12 @@ const CuratedStyles = [
 ]
 
 function App() {
+  const { user, logOut } = UserAuth();
+  const navigate = useNavigate()
+  const naviagate_to_survey = () => {
+    navigate('/survey_stepper');
+  }
+
   return (
     <div>
       <div className='section1'>
@@ -41,7 +47,7 @@ function App() {
             <p className='title_text2'>Knowledge</p>
             <p className='title_description'>A sanctuary for type 3–4 hair. Discover personalized guidance, expert education, and a supportive community.</p>
             <div className='begin_journey_div'>
-              <button className='begin_journey_button'>Begin Journey</button>
+              <button className='begin_journey_button' onClick={naviagate_to_survey}>Begin Journey</button>
               <button className='begin_journey_button' style={{ backgroundColor: 'transparent', color: '#6ea2e0', border: "1px solid rgba(0,0,0,0.18)" }}>Explore Gallery</button>
             </div>
           </div>

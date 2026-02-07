@@ -1,0 +1,38 @@
+.footer_parent_div{
+    background-color: #333333;
+    padding-top: 70px;
+    padding-bottom: 80px;
+}
+
+.footer_layout{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.footer_title{
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+}
+
+.footer_subtitle{
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+}
+
+.footer_desc{
+    font-size: 16px;
+    font-weight: 500;
+    color:#b6b6b6;
+    text-decoration: none;
+}
+
+.footer_list_div{
+    text-decoration: none;
+    flex-direction: column;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 60px;
+}
+

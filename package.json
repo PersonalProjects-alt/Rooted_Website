@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@fontsource-variable/montserrat": "^5.2.8",
+    "@fortawesome/react-fontawesome": "^3.2.0",
+    "@mui/icons-material": "^7.3.7",
+    "@mui/material": "^7.3.7",
     "firebase": "^12.8.0",
     "hamburger-react": "^2.5.2",
-    "motion": "^12.29.0",
+    "motion": "^12.33.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-google-button": "^0.8.0",
