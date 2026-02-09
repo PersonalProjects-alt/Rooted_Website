@@ -84,11 +84,9 @@ function header() {
               transition={{ duration: 0.18, ease: "easeOut" }}
           >
             <Link className="menu_item" to= "/">Home</Link>
-            <a className="menu_item" href="#">About</a>
+            <Link className="menu_item" to= "/About">About</Link>
             <Link className="menu_item" to = "/Ai_info_Page">AI Recomendations</Link>
             <Link className="menu_item" to= "/user_dashboard">Dashboard</Link>
-            <a className="menu_item" href="#">Stylists</a>
-            <a className="menu_item" href="#">HairStyle Education</a>
             <hr className="navbar_line"/>
             <Link className="menu_item" to = "/SignIn_Page">Sign In</Link>
           </motion.div>

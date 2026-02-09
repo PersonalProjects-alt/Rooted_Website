@@ -38,7 +38,7 @@ function survbey_stepper() {
             <div className='stepper_buttons_div'>
               {(['3A', '3B', '3C', '4A', '4B', '4C']).map((type) => (
                 <button
-                onClick={() => setHairType(type)}
+                onClick={() => setHairType(type)} {...console.log(type)}
                 className='begin_journey_button' style={{borderRadius:'20px', backgroundColor: '#f8f8f8', border: '1px solid #cfcfcf', color: 'black', padding:'23px', height:'18px'}}
                 >
                   {type}
@@ -57,7 +57,7 @@ function survbey_stepper() {
               {(['Low', 'Medium', 'High']).map((type) => (
                 
                 <button
-                onClick={() => setHairType(type)}
+                onClick={() => setPorosity(type)} {...console.log(type)}
                 className='begin_journey_button' style={{borderRadius:'20px', backgroundColor: '#f8f8f8', border: '1px solid #cfcfcf', color: 'black', padding:'23px', height:'18px'}}
                 >
                   {type}
@@ -78,7 +78,7 @@ function survbey_stepper() {
               {(['Low Maintenance', 'Active', 'Flexible', 'Professional']).map((type) => (
                 
                 <button
-                onClick={() => setHairType(type)}
+                onClick={() => setLifestyle(type)} {...console.log(type)}
                 className='begin_journey_button' style={{borderRadius:'20px', backgroundColor: '#f8f8f8', border: '1px solid #cfcfcf', color: 'black', padding:'25px', height:'18px'}}
                 >
                   {type}
