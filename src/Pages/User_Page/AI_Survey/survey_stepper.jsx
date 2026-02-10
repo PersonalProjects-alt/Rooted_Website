@@ -19,6 +19,16 @@ function survbey_stepper() {
     const [porosity, setPorosity] = useState(null);
     const [lifestyle, setLifestyle] = useState(null);
 
+    const canProceed = () => {
+      if (step === 1) return hairType != null
+      if (step === 2) return porosity != null
+      if (step === 3) return lifestyle != null
+    }
+
+    const sendData = async () => {
+      
+    }
+
     return (
     <>
     {user?.displayName ? (
@@ -32,16 +42,22 @@ function survbey_stepper() {
           backButtonText="Previous"
           nextButtonText="Next"
         >
+          
           <Step>
             <h2 className='stepper_title' style={{marginTop:'10px'}}>What's your hair type?</h2>
             <p>Select the hair type that best matches your natural texture.</p>
             <div className='stepper_buttons_div'>
               {(['3A', '3B', '3C', '4A', '4B', '4C']).map((type) => (
                 <button
-                onClick={() => setHairType(type)} {...console.log(type)}
+                key={type}
+                onClick={() => {
+                  setHairType(type);
+                  console.log("hairtype set to ", type);
+                }} 
                 className='begin_journey_button' style={{borderRadius:'20px', backgroundColor: '#f8f8f8', border: '1px solid #cfcfcf', color: 'black', padding:'23px', height:'18px'}}
                 >
                   {type}
+                  {hairType === type}
                 </button>
               ))}
             </div>
@@ -54,13 +70,18 @@ function survbey_stepper() {
             <p style={{fontWeight: 300, color:'#2d2d2d'}}>Medium - Balanced moisture retention</p>
             <p style={{fontWeight: 300, color:'#2d2d2d', marginBottom: '30px'}}>High - Cuticles are more open</p>
             <div className='stepper_buttons_div_cols' >
-              {(['Low', 'Medium', 'High']).map((type) => (
+              {(['Low', 'Medium', 'High']).map((level) => (
                 
                 <button
-                onClick={() => setPorosity(type)} {...console.log(type)}
+                key={level}
+                onClick={() => {
+                  setPorosity(level);
+                  console.log("porosity set to ", level);
+                }} 
                 className='begin_journey_button' style={{borderRadius:'20px', backgroundColor: '#f8f8f8', border: '1px solid #cfcfcf', color: 'black', padding:'23px', height:'18px'}}
                 >
-                  {type}
+                  {level}
+                  {porosity === level}
                 </button>
               ))}
             </div>
@@ -75,13 +96,18 @@ function survbey_stepper() {
             <p style={{fontWeight: 300, color:'#2d2d2d'}}>Flexible - Variety and versatility</p>
             <p style={{fontWeight: 300, color:'#2d2d2d', marginBottom: '30px'}}>Professional - Office-appropriate styles</p>
             <div className='stepper_buttons_div' >
-              {(['Low Maintenance', 'Active', 'Flexible', 'Professional']).map((type) => (
+              {(['Low Maintenance', 'Active', 'Flexible', 'Professional']).map((style) => (
                 
                 <button
-                onClick={() => setLifestyle(type)} {...console.log(type)}
+                key={style}
+                onClick={() => {
+                  setLifestyle(style);
+                  console.log("set lifestyle to ", style);
+                }}
                 className='begin_journey_button' style={{borderRadius:'20px', backgroundColor: '#f8f8f8', border: '1px solid #cfcfcf', color: 'black', padding:'25px', height:'18px'}}
                 >
-                  {type}
+                  {style}
+                  {lifestyle === style}
                 </button>
               ))}
             </div>

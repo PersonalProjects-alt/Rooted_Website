@@ -172,3 +172,8 @@
     justify-content: center;
 
 }
+
+
+button:active {
+  background-color: #eff2f7;
+}
