@@ -32,6 +32,10 @@ function user_dashboard() {
             <p className='section1_auth_desc'>Your personalized hair journey dashboard. Explore recommended styles, continue your education, and track your progress.</p>
           </div>
 
+          <div>
+            
+          </div>
+
           <div className='section2_authenticated'>
             <div style={{ marginLeft: '30px', marginRight: '30px' }}>
               <p className='section2_header_dash'>Recommended for You</p>

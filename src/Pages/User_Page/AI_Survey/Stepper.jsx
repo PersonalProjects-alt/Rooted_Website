@@ -2,7 +2,6 @@ import React, { useState, Children, useRef, useLayoutEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 import './Stepper.css';
-
 export default function Stepper({
   children,
   initialStep = 1,

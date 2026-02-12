@@ -173,7 +173,31 @@
 
 }
 
+.step_choice_btn{
+    background-color: #f8f8f8;
+    color: black;
+    border-radius: 999px;
+    padding: 28px;
+    height: 48px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid #cfcfcf;
+}
 
-button:active {
-  background-color: #eff2f7;
+.step_choice_btn.selected{
+  background: #eff2f7;
+  color: black;
+  border-color: #111;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 1px solid #4a90e2;
+}
+
+.step_choice_btn:not(.selected):hover{
+    transform: translateY(-1px);
+  border-color: #bdbdbd;
 }
