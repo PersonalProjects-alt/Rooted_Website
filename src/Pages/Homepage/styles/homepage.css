@@ -383,7 +383,6 @@ top: 60px;
 }
 
 .section3_layout {
-
   margin: 0 auto;
 }
 
@@ -407,7 +406,7 @@ top: 60px;
 .section3_subtitle {
   margin: 12px 0 0 0;
   font-size: 16px;
-  color: #7a7a7a;
+  color: #000000;
   line-height: 1.6;
 }
 

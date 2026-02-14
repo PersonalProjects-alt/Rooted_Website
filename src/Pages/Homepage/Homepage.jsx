@@ -88,7 +88,7 @@ function App() {
           <div className="section3_header">
             <div className="section3_heading">
               <p className="section3_title">Curated Styles</p>
-              <p className="section3_subtitle">Discover looks tailored to your lifestyle.</p>
+              <p className="section3_subtitle" style={{color:'black'}}>Discover looks tailored to your lifestyle.</p>
             </div>
 
             <button className="section3_viewall_btn">View All Styles</button>

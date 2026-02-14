@@ -131,8 +131,44 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    align-self: center;
-    
+    align-self: center;  
+}
+
+.info_box_div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.info_box {
+    border-radius: 20px;
+    background-color: white;
+    width: 130px;
+    height: 120px;
+    border: 1px solid grey;
+    padding: 15px;
+    padding-top: 5px;
+}
+
+.info_stats{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.info_header{
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+}
+
+.info_header_update{
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    text-align: center;
 }
 
 
