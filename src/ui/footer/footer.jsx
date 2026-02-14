@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import './footer.css'
+import './styles/footer.css'
 import { AnimatePresence, motion } from "motion/react"
 import { Link } from "react-router-dom";
-import { UserAuth } from '../context/AuthContext.jsx'
+import { UserAuth } from '../../context/AuthContext'
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';

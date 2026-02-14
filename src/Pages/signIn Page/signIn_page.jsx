@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './SignInPage.css'
+import './styles/signIn_page.css'
 import GoogleButton from 'react-google-button'
 import { UserAuth } from '../../context/AuthContext'
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";

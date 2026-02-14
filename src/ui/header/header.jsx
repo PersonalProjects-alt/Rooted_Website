@@ -1,20 +1,22 @@
 import React, { useState } from "react";
-import "./header.css";
+import "./styles/header.css";
 import Hamburger from "hamburger-react";
 import { AnimatePresence, motion } from "motion/react"
 import { Link } from "react-router-dom";
-import { UserAuth } from '../context/AuthContext.jsx'
+import { UserAuth } from '../../context/AuthContext.jsx'
+import { useNavigate } from "react-router-dom";
 
 
 function header() {
   const [isOpen, setOpen] = useState(false);
   const isMobile = window.matchMedia("(max-width: 575px)").matches;
-
+  const navigate = useNavigate()
   const {user, logOut} = UserAuth();
 
   const handleSignOut = async () => {
     try{
       await logOut();
+      navigate('/')
     } catch (e) {
       console.log(e);
     }
@@ -66,7 +68,7 @@ function header() {
             <a className="menu_item" href="#">Stylists</a>
             <a className="menu_item" href="#">HairStyle Education</a>
             <hr className="navbar_line"/>
-            <button className="menu_item" onClick={handleSignOut}>LogOut</button>
+            <button className="menu_item log_out_btn" onClick={handleSignOut}>LogOut</button>
           </motion.div>
         )}
         </AnimatePresence>

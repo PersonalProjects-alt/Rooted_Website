@@ -1,5 +1,5 @@
 import React from 'react'
-import './AI_infoPageSection1.css'
+import './styles/ai_information.css'
 import "@fontsource-variable/montserrat";
 import "@fontsource-variable/montserrat/wght.css";
 import "@fontsource-variable/montserrat/wght-italic.css";

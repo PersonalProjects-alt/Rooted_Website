@@ -1,8 +1,5 @@
 import { useState } from 'react'
-import './Homepage.css'
-import './HomepageSection2.css'
-import './HomepageSection3.css'
-import './HomepageSection4.css'
+import './styles/homepage.css'
 import "@fontsource-variable/montserrat"; // Defaults to wght axis
 import "@fontsource-variable/montserrat/wght.css"; // Specify axis
 import "@fontsource-variable/montserrat/wght-italic.css"; // Specify axis and style

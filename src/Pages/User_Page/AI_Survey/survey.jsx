@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import Stepper, { Step } from './Stepper';
+import Stepper, { Step } from './react_bits/stepper';
 import { AnimatePresence, motion } from "motion/react"
 import { UserAuth } from '../../../context/AuthContext'
 import { useNavigate } from "react-router-dom";
