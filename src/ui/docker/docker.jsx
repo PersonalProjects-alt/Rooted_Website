@@ -33,12 +33,14 @@ function Docker() {
 
   return (
     <>
-      <Dock
-        items={items}
-        panelHeight={65}
-        baseItemSize={50}
-        magnification={60}
-      />
+      {drawerOpen? <div></div> :
+        <Dock
+          items={items}
+          panelHeight={65}
+          baseItemSize={50}
+          magnification={60}
+        />
+      }
 
       <Drawer
         anchor="bottom"
@@ -55,9 +57,12 @@ function Docker() {
       >
         <Box sx={{ p: 2 }}>
           <div className='bottomMiniBarHandle' style={{ justifyContent: 'center' }} />
-          <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 12 }}>
-            Update your hair stats
+          <div style={{display: 'flex', flexDirection:'row', alignItems:'center', gap: '10px', marginTop: '40px'}}>
+          <img src={ai_image} width={36} height={36}/>
+          <p style={{ fontSize: 23, fontWeight: 600, marginBottom: '0px', marginTop: '0px' }}>
+            Ai Assistant
           </p>
+          </div>
 
           <List>
             <ListItem disablePadding>
