@@ -67,9 +67,6 @@ function user_dashboard() {
             <p className='section1_auth_header'>Welcome back,</p>
             <p className='section1_auth_subtitle'>{user?.displayName}</p>
             <p className='section1_auth_desc'>Your personalized hair journey dashboard. Explore recommended styles, continue your education, and track your progress.</p>
-            <div className='bottomMiniBar' onClick={() => setDrawerOpen(true)}>
-              <div className='bottomMiniBarHandle' />
-            </div>
             <div className='info_box_div'>
               <div className='info_box'>
                 <p className='info_header'>Your Hair Type:</p>
