@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Pages/Layout.jsx";
-import Homepage from "./Pages/Homepage/homepage.jsx"       
+import Homepage from "./Pages/Homepage/Homepage.jsx"     
 import AI_infoPage from "./Pages/InformationPages/ai_information.jsx";
 import SignInPage from "./Pages/signIn Page/signIn_page.jsx"
 import Dashboard from "./Pages/User_Page/user_dashboard.jsx"
