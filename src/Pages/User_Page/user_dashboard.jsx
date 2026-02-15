@@ -9,11 +9,20 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import { ref, set, serverTimestamp, getDatabase, onValue, get } from "firebase/database";
 import { AnimatePresence, motion } from "motion/react"
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 
 function user_dashboard() {
   const { user, logOut } = UserAuth();
   const [survey, setSurvey] = useState(null)
   const [loading, setLoading] = useState(true);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   const navigate = useNavigate()
   const recommended_styles = [
     { image: styl1, title: "Box Braids", desc: "Medium Maintenace" },
@@ -58,24 +67,63 @@ function user_dashboard() {
             <p className='section1_auth_header'>Welcome back,</p>
             <p className='section1_auth_subtitle'>{user?.displayName}</p>
             <p className='section1_auth_desc'>Your personalized hair journey dashboard. Explore recommended styles, continue your education, and track your progress.</p>
+            <div className='bottomMiniBar' onClick={() => setDrawerOpen(true)}>
+              <div className='bottomMiniBarHandle' />
+            </div>
             <div className='info_box_div'>
               <div className='info_box'>
                 <p className='info_header'>Your Hair Type:</p>
-                <p className='info_stats' style={{fontSize:'25px'}}>{survey.hairType}</p>
+                <p className='info_stats' style={{ fontSize: '25px' }}>{survey.hairType}</p>
               </div>
               <div className='info_box'>
                 <p className='info_header'>Your Hair Porosity:</p>
-                <p className='info_stats' style={{marginTop:'25px'}}>{survey.porosity}</p>
+                <p className='info_stats' style={{ marginTop: '25px' }}>{survey.porosity}</p>
               </div>
               <div className='info_box'>
                 <p className='info_header'>Your Hair Lifestyle:</p>
-                <p className='info_stats' style={{marginTop:'25px'}}>{survey.lifestyle}</p>
+                <p className='info_stats' style={{ marginTop: '25px' }}>{survey.lifestyle}</p>
               </div>
               <div className='info_box'>
-                <p className='info_header_update' style={{marginTop:'40px'}}>Update your hair stats</p>
+                <p className='info_header_update' style={{ marginTop: '40px' }}>Update your hair stats</p>
               </div>
             </div>
           </div>
+
+          <Drawer
+            anchor="bottom"
+            open={drawerOpen}
+            onClose={() => setDrawerOpen(false)}
+            PaperProps={{
+              sx: {
+                borderTopLeftRadius: 18,
+                borderTopRightRadius: 18,
+                paddingBottom: 2,
+              },
+            }}
+          >
+            <Box sx={{ p: 2 }}>
+              <div className='bottomMiniBarHandle' style={{justifyContent:'center'}} />
+              <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 12 }}>
+                Update your hair stats
+              </p>
+
+              <List>
+                <ListItem disablePadding>
+                  <ListItemButton onClick={() => { navigate("/ai_survey"); setDrawerOpen(false); }}>
+                    Update survey
+                  </ListItemButton>
+                </ListItem>
+              </List>
+
+              <Button
+                variant="outlined"
+                onClick={() => setDrawerOpen(false)}
+                sx={{ mt: 2, width: "100%" }}
+              >
+                Close
+              </Button>
+            </Box>
+          </Drawer>
 
 
           <div className='section2_authenticated'>
