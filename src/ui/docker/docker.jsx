@@ -16,6 +16,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import React, { useEffect, useState } from 'react'
+import {GlassCard} from '@developer-hub/liquid-glass'
 
 
 function Docker() {
@@ -37,11 +38,11 @@ function Docker() {
         <Dock
           items={items}
           panelHeight={65}
-          baseItemSize={50}
+          baseItemSize={45}
           magnification={60}
         />
       }
-
+      
       <Drawer
         anchor="bottom"
         open={drawerOpen}

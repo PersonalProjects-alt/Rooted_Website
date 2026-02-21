@@ -35,12 +35,42 @@ function user_dashboard() {
     navigate('/SignIn_Page');
   }
 
+  const callProtectedRoute = async () => {
+    try{
+      if (!user) return;
+
+      //Get Firebase ID token for the currently logged-in user
+      const token = await user.getIdToken();
+
+      //Call backend protected route with the token in headers
+      const res = await fetch("http://localhost:4000/api/private", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      const data = await res.json();
+
+      // If token is missing/invalid, backend will return 401
+      if (!res.ok) {
+        console.error("Backend rejected request", data)
+        return;
+      }
+
+      console.log("Protected route response", data);
+    } catch(e){
+      console.error("error calliung protected route", e)
+    }
+  }
+
   //use effect runs after component loads
   useEffect(() => {
     //cant make useEffect directly async so you have to wrap it 
     const loadSurvey = async () => {
       if (!user?.uid) return; // if the user is null return directly 
 
+      await callProtectedRoute();
       //wrapping in a try and catch  
       try {
         const snap = await get(ref(db, `users/${user.uid}/survey`)); //fetching from firebase

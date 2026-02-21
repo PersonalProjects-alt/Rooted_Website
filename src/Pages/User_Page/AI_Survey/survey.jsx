@@ -66,7 +66,7 @@ function survey_stepper() {
               <h2 className='stepper_title' style={{ marginTop: '10px' }}>What's your hair type?</h2>
               <p>Select the hair type that best matches your natural texture.</p>
               <div className='stepper_buttons_div'>
-                {(['3A', '3B', '3C', '4A', '4B', '4C']).map((type) => {
+                {(['1A', '1B', '1C','2A', '2B', '2C','3A', '3B', '3C', '4A', '4B', '4C']).map((type) => {
                   const selected = hairType === type
                   return (
                     <button
