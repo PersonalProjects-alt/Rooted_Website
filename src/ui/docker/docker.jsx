@@ -17,12 +17,22 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import React, { useEffect, useState } from 'react'
 import {GlassCard} from '@developer-hub/liquid-glass'
+import ChatUI from '../ai_drawer/ai_chatUi'
+import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import {
+  MainContainer,
+  ChatContainer,
+  MessageList,
+  Message,
+  MessageInput,
+} from "@chatscope/chat-ui-kit-react";
 
 
 function Docker() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate()
-
+  const { user, logOut } = UserAuth();
+  
   const items = [
     { icon: <img src={home_image} height={20} width={20} />, label: 'Home', onClick: () => navigate('/') },
     { icon: <img src={dashbaord_image} height={20} width={20} />, label: 'Dashboard', onClick: () => navigate('/user_dashboard') },
@@ -67,19 +77,17 @@ function Docker() {
 
           <List>
             <ListItem disablePadding>
-              <ListItemButton onClick={() => { navigate("/ai_survey"); setDrawerOpen(false); }}>
-                Update survey
-              </ListItemButton>
+              <ChatUI/>
             </ListItem>
           </List>
 
-          <Button
+          {/* <Button
             variant="outlined"
             onClick={() => setDrawerOpen(false)}
             sx={{ mt: 2, width: "100%" }}
           >
             Close
-          </Button>
+          </Button> */}
         </Box>
       </Drawer>
 

@@ -8,6 +8,9 @@ import SignInPage from "./Pages/signIn Page/signIn_page.jsx"
 import Dashboard from "./Pages/User_Page/user_dashboard.jsx"
 import AiSurvey from "./Pages/User_Page/AI_Survey/survey.jsx"
 import { AuthContextProvider } from "./context/AuthContext.jsx" 
+import "./index.css";
+
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 
