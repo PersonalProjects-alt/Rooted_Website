@@ -100,15 +100,15 @@ function user_dashboard() {
             <div className='info_box_div'>
               <div className='info_box'>
                 <p className='info_header'>Your Hair Type:</p>
-                <p className='info_stats' style={{ fontSize: '25px' }}>{survey.hairType}</p>
+                <p className='info_stats' style={{ fontSize: '25px', marginTop: '35px' }}>{survey?.hairType}</p>
               </div>
               <div className='info_box'>
                 <p className='info_header'>Your Hair Porosity:</p>
-                <p className='info_stats' style={{ marginTop: '25px' }}>{survey.porosity}</p>
+                <p className='info_stats' style={{ marginTop: '35px' }}>{survey?.porosity}</p>
               </div>
               <div className='info_box'>
                 <p className='info_header'>Your Hair Lifestyle:</p>
-                <p className='info_stats' style={{ marginTop: '25px' }}>{survey.lifestyle}</p>
+                <p className='info_stats' style={{ marginTop: '35px' }}>{survey?.lifestyle}</p>
               </div>
               <div className='info_box'>
                 <p className='info_header_update' style={{ marginTop: '40px' }}>Update your hair stats</p>

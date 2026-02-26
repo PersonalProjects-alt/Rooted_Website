@@ -64,3 +64,48 @@
   color: #fff;
   transform: translateX(-50%);
 }
+
+.ai_subText {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.docker_info_box {
+  border-radius: 20px;
+  background-color: white;
+  height: 10px;
+  border: 1px solid grey;
+  padding: 15px;
+  display: inline-flex;
+  flex-direction: row;
+  scroll-snap-align: start;
+  align-items: center;
+  white-space: nowrap;  
+}
+
+.docker_info_box_div{
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+
+  overflow-x: auto;              
+  -webkit-overflow-scrolling: touch;
+  -webkit-scrollbar: None;
+  scroll-snap-type: x mandatory; 
+  overscroll-behavior-x: contain;
+  padding: 8px 4px;
+
+}
+
+.docker_info_box_div::-webkit-scrollbar {
+  display: none;
+}
+
+
+.info_stats_docker{
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+

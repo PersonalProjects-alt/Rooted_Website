@@ -4,7 +4,7 @@ const port = 4000
 const cors = require("cors")
 
 //Express Middleware setup
-app.use(express.urlencoded({extended: true})) //allows the backend to read form data
+app.use(express.urlencoded({ extended: true })) //allows the backend to read form data
 
 //allowing the backend to read JSON request bodies ()required for POST requests like api/chat
 app.use(express.json())
@@ -17,7 +17,8 @@ const serviceAccount = require("./serviceAccountKey.json") //never expose to fro
 
 //Initialize firebase admin (server-side auth verification)
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://auth-rooted-default-rtdb.firebaseio.com/" //your firebase realtime database url
 })
 
 
@@ -36,8 +37,8 @@ async function requireAuth(req, res, next) {
 
     // If no valid Bearer token is found, block the request
     if (!match) {
-      return res.status(401).json({ 
-        error: "Missing Authorization Bearer token" 
+      return res.status(401).json({
+        error: "Missing Authorization Bearer token"
       });
     }
 
@@ -63,8 +64,8 @@ async function requireAuth(req, res, next) {
 
   } catch (err) {
     // If token is invalid or expired, block access
-    return res.status(401).json({ 
-      error: "Invalid or expired token" 
+    return res.status(401).json({
+      error: "Invalid or expired token"
     });
   }
 }
@@ -76,10 +77,8 @@ app.get("/", async (req, res) => {
   res.send("This is working");
 });
 
-
-// Protected Route (Authentication Required)
-
-
+//MAKING SURE THE USER IS AUTHENTICATED BEFORE ACCESSING THIS ROUTE
+// Protected Route (Authentication Required) 
 // Notice: requireAuth is added BEFORE the async handler
 // That means the user must pass authentication first
 app.get("/api/private", requireAuth, async (req, res) => {
@@ -93,6 +92,66 @@ app.get("/api/private", requireAuth, async (req, res) => {
     user: req.user,  // This came from decoded Firebase token
   });
 });
+
+
+//MAKING SURE THE USER IS AUTHENTICATED BEFORE4 ACCESSING THE CHAT ROUTE
+app.post("/api/chat", requireAuth, async (req, res) => {
+  try {
+    const { message } = req.body;
+
+    //checking if the message exits and is a string
+    if (!message || typeof message !== "string") {
+      return res.status(400).json({ error: "message is required" });
+    }
+
+    //very user uid
+    const uid = req.user.uid;
+
+    //loads the survey data
+    const surveyRef = admin.database().ref(`users/${uid}/survey`);
+
+    const snap = await surveyRef.get();
+
+    const survey = snap.exists() ? snap.val() : null;
+
+    // If no survey, you can guide the user to fill it out
+    if (!survey) {
+      return res.json({
+        reply: "I couldn’t find your hair survey yet. Please complete the survey so I can personalise recommendations.",
+        surveyFound: false,
+      });
+    }
+
+    // ✅ Placeholder “rules engine” (super basic for now)
+    // Later you’ll replace this with your real deterministic rules
+    const baseRecommendations = {
+      hairType: survey.hairType,
+      porosity: survey.porosity,
+      lifestyle: survey.lifestyle,
+      note: "This is a placeholder response until Ollama is added.",
+      safeDefault: "Try lightweight, water-based products first and avoid heavy buildup if you notice residue.",
+    };
+
+    // ✅ Placeholder reply (pretend AI)
+    // Later this becomes the Ollama call result
+    const reply = `
+     Place holder message while AI is still in development 
+      `;
+
+    return res.json({
+      reply,
+      surveyFound: true,
+      profile: survey,
+      baseRecommendations,
+    });
+
+
+
+  } catch (e) {
+    console.log("Error in /api/chat:", e);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+})
 
 
 

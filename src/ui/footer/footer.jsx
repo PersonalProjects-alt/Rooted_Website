@@ -24,9 +24,9 @@ function footer() {
 
             <p className='footer_subtitle'>Connect</p>
             <div className="footer_list_div" style={{flexDirection: 'row'}}>    
-                <XIcon style={{color: "white"}}/>
-                <YouTubeIcon style={{color: "white"}}/>
-                <InstagramIcon style={{color: "white"}}/>
+                <XIcon style={{color: "white", marginTop: '20px'}}/>
+                <YouTubeIcon style={{color: "white", marginTop: '20px'}}/>
+                <InstagramIcon style={{color: "white", marginTop: '20px'}}/>
             </div>
 
             <hr/>
