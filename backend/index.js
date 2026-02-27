@@ -57,6 +57,7 @@ async function requireAuth(req, res, next) {
     req.user = {
       uid: decoded.uid,
       email: decoded.email,
+      name: decoded.name || decoded.displayName || "Cherished Customer",
     };
 
     // Allow the request to continue to the protected route
@@ -104,7 +105,9 @@ app.post("/api/chat", requireAuth, async (req, res) => {
       return res.status(400).json({ error: "message is required" });
     }
 
-    //very user uid
+    let userName = req.user.name
+
+    //every user uid
     const uid = req.user.uid;
 
     //loads the survey data
@@ -124,28 +127,66 @@ app.post("/api/chat", requireAuth, async (req, res) => {
 
     // ✅ Placeholder “rules engine” (super basic for now)
     // Later you’ll replace this with your real deterministic rules
-    const baseRecommendations = {
-      hairType: survey.hairType,
-      porosity: survey.porosity,
-      lifestyle: survey.lifestyle,
-      note: "This is a placeholder response until Ollama is added.",
-      safeDefault: "Try lightweight, water-based products first and avoid heavy buildup if you notice residue.",
-    };
+    // const baseRecommendations = {
+    //   hairType: survey.hairType,
+    //   porosity: survey.porosity,
+    //   lifestyle: survey.lifestyle,
+    //   note: "This is a placeholder response until Ollama is added.",
+    //   safeDefault: "Try lightweight, water-based products first and avoid heavy buildup if you notice residue.",
+    // };
 
-    // ✅ Placeholder reply (pretend AI)
-    // Later this becomes the Ollama call result
-    const reply = `
-     Place holder message while AI is still in development 
-      `;
+    const prompt = `
+    Rooted is a digital wellness and education platform for women with type 1–4 hair. 
+    
+    User Profile:
+    Hair Type: ${survey.hairType}
+    Porosity: ${survey.porosity}
+    Lifestyle: ${survey.lifestyle}
+
+    User Name: ${userName}
+
+    User Question: ${message}
+
+    respond to these cleary and praticaly with actionable steps. If you dont know the answer, say you dont know. Always provide value with every response. 
+    Also try and provide prodyucts for uisers to use ONLY IF YOU ARE SURE IT WILL BE A GOOD FIT FOR THE USER.
+
+    Make sue top use the user's name in responses
+
+    ALso make sure to shorten responses and use bullet points when possible
+
+    al,so when having multiple points make sure that it is on a new line 
+
+    when providing responses make it so that it fits welll in a chat bubble and is easy to read and in the context of a chat assistant 
+    
+    `;
+
+    const ollamaResponse = await fetch("http://localhost:11434/api/generate", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        model: "llama3.1:8b",
+        prompt,
+        stream: false
+      })
+    });
+    
+    const data = await ollamaResponse.json();
+
+    // // Ollama call result
+    // const reply = `
+    //  Place holder message while AI is still in development 
+    //   `;
+
+    // return res.json({
+    //   reply,
+    //   surveyFound: true,
+    //   profile: survey,
+    //   baseRecommendations,
+    // });
 
     return res.json({
-      reply,
-      surveyFound: true,
-      profile: survey,
-      baseRecommendations,
-    });
-
-
+      reply: data.response
+    })
 
   } catch (e) {
     console.log("Error in /api/chat:", e);
