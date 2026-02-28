@@ -1,0 +1,17 @@
+.search_bar{ 
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: #1f1f2a;
+    color: white;
+    display: flex;
+    width: 100%;
+}
+
+.search_bar_div{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}

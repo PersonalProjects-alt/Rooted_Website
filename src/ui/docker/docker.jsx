@@ -4,6 +4,7 @@ import home_image from './assets/home.png'
 import dashbaord_image from './assets/dashboard.png'
 import profile_image from './assets/user.png'
 import settings_image from './assets/settings.png'
+import location_img from './assets/location.png'
 import { AnimatePresence, motion } from "motion/react"
 import { Link } from "react-router-dom";
 import { UserAuth } from '../../context/AuthContext.jsx'
@@ -70,7 +71,7 @@ function Docker() {
     { icon: <img src={home_image} height={20} width={20} />, label: 'Home', onClick: () => navigate('/') },
     { icon: <img src={dashbaord_image} height={20} width={20} />, label: 'Dashboard', onClick: () => navigate('/user_dashboard') },
     { icon: <img src={ai_image} height={20} width={20} />, label: 'Ai', onClick: () => setDrawerOpen(true) },
-    { icon: <img src={profile_image} height={20} width={20} />, label: 'Profile', onClick: () => navigate('/user_dashboard') },
+    { icon: <img src={location_img} height={20} width={20} />, label: 'Profile', onClick: () => navigate('/findSalon') },
     { icon: <img src={settings_image} height={20} width={20} />, label: 'Settings', onClick: () => navigate('/user_dashboard') },
   ];
 
@@ -121,6 +122,18 @@ function Docker() {
               <div className='docker_info_box'>
                 <p className='info_header'>Your Hair Type:</p>
                 <p className='info_stats_docker'>{survey?.lifestyle}</p>
+              </div>
+              <div className='docker_info_box'>
+                <p className='info_header'>Goals:</p>
+                <p className='info_stats_docker'>{survey?.goals}</p>
+              </div>
+              <div className='docker_info_box'>
+                <p className='info_header'>Wash Time:</p>
+                <p className='info_stats_docker'>{survey?.washTime}</p>
+              </div>
+              <div className='docker_info_box'>
+                <p className='info_header'>Wash Frequency:</p>
+                <p className='info_stats_docker'>{survey?.washFrequency}</p>
               </div>
             </div>
             <div>

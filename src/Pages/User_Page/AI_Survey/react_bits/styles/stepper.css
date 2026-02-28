@@ -201,3 +201,7 @@
     transform: translateY(-1px);
   border-color: #bdbdbd;
 }
+
+.stepper_subtitle {
+  margin-bottom: 28px;
+}

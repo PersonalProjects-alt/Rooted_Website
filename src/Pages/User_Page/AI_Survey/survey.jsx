@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, use } from 'react'
 import Stepper, { Step } from './react_bits/stepper';
 import { AnimatePresence, motion } from "motion/react"
 import { UserAuth } from '../../../context/AuthContext'
@@ -20,11 +20,17 @@ function survey_stepper() {
   const [hairType, setHairType] = useState(null);
   const [porosity, setPorosity] = useState(null);
   const [lifestyle, setLifestyle] = useState(null);
+  const [goals, setGoals] = useState(null);
+  const [washTime, setWashTime] = useState(null);
+  const [washFrequency, setWashFrequency] = useState(null);
 
   const canProceed = () => {
     if (step === 1) return hairType != null
     if (step === 2) return porosity != null
     if (step === 3) return lifestyle != null
+    if (step === 4) return goals != null
+    if (step === 5) return washTime != null
+    if (step === 6) return washFrequency != null
     return true
   }
 
@@ -35,6 +41,9 @@ function survey_stepper() {
       hairType,
       porosity,
       lifestyle,
+      goals,
+      washTime,
+      washFrequency,
       updatedAt: Date.now()
     };
 
@@ -64,9 +73,9 @@ function survey_stepper() {
 
             <Step>
               <h2 className='stepper_title' style={{ marginTop: '10px' }}>What's your hair type?</h2>
-              <p>Select the hair type that best matches your natural texture.</p>
+              <p className='stepper_subtitle'>Select the hair type that best matches your natural texture.</p>
               <div className='stepper_buttons_div'>
-                {(['1A', '1B', '1C','2A', '2B', '2C','3A', '3B', '3C', '4A', '4B', '4C']).map((type) => {
+                {(['1A', '1B', '1C', '2A', '2B', '2C', '3A', '3B', '3C', '4A', '4B', '4C']).map((type) => {
                   const selected = hairType === type
                   return (
                     <button
@@ -87,7 +96,7 @@ function survey_stepper() {
 
             <Step>
               <h2 className='stepper_title' style={{ marginTop: '10px' }}>What's your hair porosity?</h2>
-              <p>Hair porosity affects how your hair absorbs and retains moisture.</p>
+              <p className='stepper_subtitle'>Hair porosity affects how your hair absorbs and retains moisture.</p>
               <p style={{ fontWeight: 300, color: '#2d2d2d' }}>Low - Cuticles are tightly closed</p>
               <p style={{ fontWeight: 300, color: '#2d2d2d' }}>Medium - Balanced moisture retention</p>
               <p style={{ fontWeight: 300, color: '#2d2d2d', marginBottom: '30px' }}>High - Cuticles are more open</p>
@@ -111,10 +120,9 @@ function survey_stepper() {
               </div>
             </Step>
 
-
             <Step>
               <h2 className='stepper_title' style={{ marginTop: '10px' }}>What's your lifestyle?</h2>
-              <p>Help us recommend hairstyles that fit your daily routine.</p>
+              <p className='stepper_subtitle'>Help us recommend hairstyles that fit your daily routine.</p>
               <p style={{ fontWeight: 300, color: '#2d2d2d' }}>Low Maintenance - Minimal daily styling</p>
               <p style={{ fontWeight: 300, color: '#2d2d2d' }}>Active - Gym and sports friendly</p>
               <p style={{ fontWeight: 300, color: '#2d2d2d' }}>Flexible - Variety and versatility</p>
@@ -133,6 +141,78 @@ function survey_stepper() {
                     >
                       {style}
                       {lifestyle === style}
+                    </button>
+                  )
+
+                })}
+              </div>
+            </Step>
+
+            <Step>
+              <h2 className='stepper_title' style={{ marginTop: '10px' }}>What's your goals</h2>
+              <p className='stepper_subtitle'>Help us recommend hairstyles that fit your daily routine.</p>
+              <div className='stepper_buttons_div' >
+                {(['Moisture Retention', 'Length Retention', 'Reduce Breakage', 'Scalp Health', 'Volume', 'Shine', 'Repair Damage']).map((user_goal) => {
+                  const selected = goals === user_goal
+                  return (
+                    <button
+                      key={user_goal}
+                      onClick={() => {
+                        setGoals(user_goal);
+                        console.log("set goals to ", user_goal);
+                      }}
+                      className={`step_choice_btn ${selected ? "selected" : "disabled"}`} style={{ padding: '25px', height: '18px' }}
+                    >
+                      {user_goal}
+                      {goals === user_goal}
+                    </button>
+                  )
+
+                })}
+              </div>
+            </Step>
+
+            <Step>
+              <h2 className='stepper_title' style={{ marginTop: '10px' }}>How much time do you spend on your hair daily?</h2>
+              <p className='stepper_subtitle'>Help us recommend hairstyles that fit your daily routine.</p>
+              <div className='stepper_buttons_div' >
+                {(['5 - 10 minutes', '15 - 30 minutes', '30+ minutes']).map((user_washTime) => {
+                  const selected = washTime === user_washTime
+                  return (
+                    <button
+                      key={user_washTime}
+                      onClick={() => {
+                        setWashTime(user_washTime);
+                        console.log("set wash time to ", user_washTime);
+                      }}
+                      className={`step_choice_btn ${selected ? "selected" : "disabled"}`} style={{ padding: '25px', height: '18px' }}
+                    >
+                      {user_washTime}
+                      {washTime === user_washTime}
+                    </button>
+                  )
+
+                })}
+              </div>
+            </Step>
+
+            <Step>
+              <h2 className='stepper_title' style={{ marginTop: '10px' }}>How much often do you wash your hair?</h2>
+              <p className='stepper_subtitle'>Help us recommend hairstyles that fit your daily routine.</p>
+              <div className='stepper_buttons_div' >
+                {(['Weekly', 'Bi-weekly', 'Monthly']).map((user_washFrequency) => {
+                  const selected = washFrequency === user_washFrequency
+                  return (
+                    <button
+                      key={user_washFrequency}
+                      onClick={() => {
+                        setWashFrequency(user_washFrequency);
+                        console.log("set wash frquency to ", user_washFrequency);
+                      }}
+                      className={`step_choice_btn ${selected ? "selected" : "disabled"}`} style={{ padding: '25px', height: '18px' }}
+                    >
+                      {user_washFrequency}
+                      {washFrequency === user_washFrequency}
                     </button>
                   )
 
