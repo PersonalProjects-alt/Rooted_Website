@@ -19,6 +19,7 @@
     "@mui/icons-material": "^7.3.7",
     "@mui/material": "^7.3.7",
     "@tailwindcss/vite": "^4.2.0",
+    "apify-client": "^2.22.2",
     "firebase": "^12.8.0",
     "hamburger-react": "^2.5.2",
     "motion": "^12.34.0",

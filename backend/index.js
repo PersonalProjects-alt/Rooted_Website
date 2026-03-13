@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const port = 4000
 const cors = require("cors")
+require("dotenv").config()
 
 //Express Middleware setup
 app.use(express.urlencoded({ extended: true })) //allows the backend to read form data
@@ -14,6 +15,7 @@ app.use(cors()) // without this backend cant call backend
 
 const admin = require("firebase-admin")
 const serviceAccount = require("./serviceAccountKey.json") //never expose to front end
+const { circOut } = require("motion/react")
 
 //Initialize firebase admin (server-side auth verification)
 admin.initializeApp({
@@ -95,6 +97,66 @@ app.get("/api/private", requireAuth, async (req, res) => {
 });
 
 
+app.post("/api/salons/search", requireAuth, async (req, res) => {
+  try {
+    const { location, query } = req.body //get the location and query from the request body
+
+    if (!location || !query) {
+      return res.status(400).json({ error: "location and query are required" })
+    }
+
+    // const searchText = `${query} in ${location}`
+
+    const apifyRes = await fetch(`https://api.apify.com/v2/acts/compass~crawler-google-places/run-sync-get-dataset-items?token=${process.env.APIFY_TOKEN}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        searchStringsArray: [query],
+        locationQuery: location,
+        maxCrawledPlacesPerSearch: 20,
+        language: "en",
+      }),
+    })
+
+    const data = await apifyRes.json();
+
+    // console.log("Apify response", data);
+
+    // If Apify returned an error object instead of array
+    // if (!Array.isArray(data)) {
+    //   return res.status(500).json({
+    //     error: "Apify did not return an array",
+    //     raw: data
+    //   });
+    // }
+
+    const salons = data.map((item) => ({
+      name: item.title || "No name Provided",
+      rating: item.totalScore || "No rating provided",
+      reviewsCount: item.reviewsCount || "No reviews count provided",
+      street: item.street || "No street provided",
+      city: item.city || "No city provided",
+      phone: item.phone || "No phone provided",
+      url: item.url || "No url provided",
+      categoryName: item.categoryName || "No category provided",
+      categories: item.categories || "No categories provided",
+      website: item.website || "No website provided",
+      address: item.address || "No address provided",
+      imageUrl: item.imageUrl || "image not provided",
+
+    }))
+
+    return res.json({ salons })
+
+  } catch (e) {
+    console.error("Error searching for salons:", e);
+    return res.status(500).json({ error: "Internal Server Error" })
+  }
+})
+
+
 //MAKING SURE THE USER IS AUTHENTICATED BEFORE4 ACCESSING THE CHAT ROUTE
 app.post("/api/chat", requireAuth, async (req, res) => {
   try {
@@ -168,14 +230,14 @@ app.post("/api/chat", requireAuth, async (req, res) => {
 
     const ollamaResponse = await fetch("http://localhost:11434/api/generate", {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         model: "llama3.1:8b",
         prompt,
         stream: false
       })
     });
-    
+
     const data = await ollamaResponse.json();
 
     // // Ollama call result

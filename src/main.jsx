@@ -8,6 +8,7 @@ import SignInPage from "./Pages/signIn Page/signIn_page.jsx"
 import Dashboard from "./Pages/User_Page/user_dashboard.jsx"
 import AiSurvey from "./Pages/User_Page/AI_Survey/survey.jsx"
 import SalonSearch from "./Pages/find_salon/search_for_salon.jsx"
+import ShowSalonResults from "./Pages/find_salon/show_salon_results.jsx"
 import { AuthContextProvider } from "./context/AuthContext.jsx" 
 import "./index.css";
 
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/user_dashboard" element={<Dashboard />} />
           <Route path="/survey_stepper" element={<AiSurvey />} />
           <Route path="/findSalon" element = {<SalonSearch/>}/>
+          <Route path= "/showSalonResults" element={<ShowSalonResults/>}/>
         </Route>
       </Routes>
       </AuthContextProvider>

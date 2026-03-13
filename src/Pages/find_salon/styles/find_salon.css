@@ -1,11 +1,11 @@
 .search_bar{ 
     flex: 1;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 15px;
+    border-radius: 30px;
     border: none;
     outline: none;
-    background: #1f1f2a;
-    color: white;
+    border: 1px solid #1f1f2a;
+    color: black;
     display: flex;
     width: 100%;
 }
@@ -14,4 +14,33 @@
     display: flex;
     align-items: center;
     margin-top: 20px;
+}
+
+.search_button{
+    margin-top: 20px;
+    padding: 15px 30px;
+    border-radius: 30px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #1f1f2a;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.salon_result_card{
+    border: 1px solid #1f1f2a;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    gap: 15px;
+    
+}
+
+.salon_images{
+    width: 100%;
+    max-width: 200px;
+    border-radius: 20px;
+
 }
