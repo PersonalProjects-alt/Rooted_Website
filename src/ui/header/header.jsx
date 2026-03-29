@@ -11,10 +11,10 @@ function header() {
   const [isOpen, setOpen] = useState(false);
   const isMobile = window.matchMedia("(max-width: 575px)").matches;
   const navigate = useNavigate()
-  const {user, logOut} = UserAuth();
+  const { user, logOut } = UserAuth();
 
   const handleSignOut = async () => {
-    try{
+    try {
       await logOut();
       navigate('/')
     } catch (e) {
@@ -26,22 +26,28 @@ function header() {
     <header className="navbar">
       <div className="navbar_child">
         <p className="Rooted_title">Rooted</p>
-        {/* {isMobile ? null :  (
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', position: 'fixed', right: '80px' }}>
-          <motion.button 
-            whileHover={{ scale: 0.95 }}
-            whileTap={{ scale: 0.9 }}
-            className="login_signin_buttons">Login</motion.button>
 
-          <motion.button 
-            whileHover={{ scale: 0.95 }}
-            whileTap={{ scale: 0.9 }}
-            className="login_signin_buttons">Sign Up</motion.button>
-        </div>
+        {user?.displayName ? (
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', right: '80px' }}>
+            <motion.button
+              whileHover={{ scale: 0.95 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handleSignOut}
+              className="login_signin_buttons">Signout</motion.button>
+          </div>
 
-        )} */}
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', right: '80px' }}>
+            <motion.button
+              whileHover={{ scale: 0.95 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => navigate('/SignIn_Page')}
+              className="login_signin_buttons">Login/Signup</motion.button>
+          </div>
+        )}
 
-          <div className="hamburger">
+
+        {/* <div className="hamburger">
             <Hamburger
               rounded
               toggled={isOpen}
@@ -49,9 +55,9 @@ function header() {
               size={24}
               color="#2f2f2f"
             />
-          </div>
+          </div> */}
       </div>
-      {user?.displayName ? (
+      {/* {user?.displayName ? (
         <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div 
@@ -95,7 +101,7 @@ function header() {
         )}
         </AnimatePresence>
 
-      )}
+      )} */}
     </header>
   );
 }

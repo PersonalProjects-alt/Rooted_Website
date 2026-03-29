@@ -83,7 +83,7 @@ function App() {
         </div>
       </div>
 
-      <div className="section3">
+      <div className="section3" style={{marginBottom: '0px'}}>
         <div className="section3_layout">
           <div className="section3_header">
             <div className="section3_heading">

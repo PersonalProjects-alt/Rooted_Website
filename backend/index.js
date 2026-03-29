@@ -132,7 +132,27 @@ app.post("/api/salons/search", requireAuth, async (req, res) => {
     //   });
     // }
 
-    const salons = data.map((item) => ({
+
+    //filteriung out results for only salon/ hair dressers
+    const keywords =[
+      "salon", 
+      "hair",
+      "barber", 
+      "beauty",
+      "braid",
+      "hairdresser",
+      "afro",
+      "afro carribean",
+      "curly",
+    ]
+
+    const filtered = data. filter((item) => {
+      const text = `${item.title || ""} ${item.categoryName || ""} ${item.categories || [].join(" ")}`.toLowerCase()
+
+      return keywords.some((keyword) => text.includes(keyword))
+    })
+
+    const salons = filtered.map((item) => ({
       name: item.title || "No name Provided",
       rating: item.totalScore || "No rating provided",
       reviewsCount: item.reviewsCount || "No reviews count provided",
