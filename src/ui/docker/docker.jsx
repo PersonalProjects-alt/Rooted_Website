@@ -16,13 +16,7 @@ import ChatUI from '../ai_drawer/ai_chatUi'
 import { db } from "../../firebase";
 import { ref, set, serverTimestamp, getDatabase, onValue, get } from "firebase/database";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
-import {
-  MainContainer,
-  ChatContainer,
-  MessageList,
-  Message,
-  MessageInput,
-} from "@chatscope/chat-ui-kit-react";
+import LoggedOutComponent from '../loggedOutComponent/loggedOutComponent.jsx';
 
 
 function Docker() {
@@ -172,7 +166,7 @@ function Docker() {
                 Ai Assistant
               </p>
             </div>
-            <p className='ai_subText'>Make sure that you are logged in </p>
+            <LoggedOutComponent style={{marginBottom: '0px', marginTop: '0px', height:'50vh' }}/>
             <div>
 
             </div>

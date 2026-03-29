@@ -1,24 +1,63 @@
 .section1_signIn{
-    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    height: 100vh;
+    padding-top: 140px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .section1_layout_signIn{
     justify-content: center;
     align-items: center;
-    display: flex;
     flex-direction: column;
 }
 
 .header_text {
     color: black;
     font-size: 40px;
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
     margin-bottom: 40px;
-    padding-top: 50px;
 }
 
 .google_btn{
     border-radius: 20px!important;
     justify-content: center;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+}
+
+.divider span {
+  padding: 0 12px;
+  color: #888;
+  font-size: 14px;
+}
+
+.google-icon-btn {
+  all: unset; 
+  cursor: pointer;
+  display: flex;
+  justify-self: center;
+  margin-top: 10px;
+}
+
+.google-icon-btn img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  
 }

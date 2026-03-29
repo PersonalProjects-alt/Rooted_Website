@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import './user_dashboard.css'
 import styl1 from "../../assets/style1.png"
 import styl2 from "../../assets/style2.png"
@@ -16,12 +16,16 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
+import loggedOutComponent from '../../ui/loggedOutComponent/loggedOutComponent'
+import LoadingComponent from '../../ui/loadingComponent/loadingComponent'
+import LoggedOutComponent from '../../ui/loggedOutComponent/loggedOutComponent'
 
 function user_dashboard() {
   const { user, logOut } = UserAuth();
   const [survey, setSurvey] = useState(null)
   const [loading, setLoading] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
 
   const navigate = useNavigate()
   const recommended_styles = [
@@ -86,13 +90,42 @@ function user_dashboard() {
     loadSurvey();
   }, [user?.uid] /**User dependecy array which checks if there are any changes with user?uid */);
 
-  if (loading) return <p>Loading...</p>;
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowFallback(true);
+    }, 5000); // Show fallback after 5 seconds
+
+    return () => clearTimeout(timeout); // Cleanup timeout on unmount
+  }, [])
+
+
+  // if(loading && !showFallback) {
+  //   return (
+  //     <LoadingComponent/>
+  //   )
+  // }
+  
+  //   if(loading && showFallback) {
+  //   return (
+  //     <LoggedOutComponent/>
+  //   )
+  // } 
+  
+  if (loading && user) {
+    <LoadingComponent/>
+  }
+
+  if(!user){
+    return (
+      <LoggedOutComponent/>
+    )
+  }
   if (!survey) return <p>No survey found yet.</p>;
 
   return (
     <>
       {user?.displayName ? (
-        <>
+        <div>
           <div className='section1_authenticated'>
             <p className='section1_auth_header'>Welcome back,</p>
             <p className='section1_auth_subtitle'>{user?.displayName}</p>
@@ -182,18 +215,9 @@ function user_dashboard() {
             </div>
           </div>
 
-        </>
-      ) : (
-        <div className='section1_unauthenticated'>
-          <div className='unauthenticted_box'>
-            <p className='unauthenticated_header'>Welcome to Rooted</p>
-            <p className='unauthenticated_subtitle'>Please sign in to access your personalized dashboard and hair journey.</p>
-            <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', marginBottom: '5px' }}>
-              <button className='unauthenticated_btn' onClick={signInbtn}>Sign In</button>
-            </div>
-
-          </div>
         </div>
+      ) : (
+        <LoggedOutComponent/>
       )}
     </>
 
