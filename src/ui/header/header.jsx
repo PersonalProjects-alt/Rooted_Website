@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { Link } from "react-router-dom";
 import { UserAuth } from '../../context/AuthContext.jsx'
 import { useNavigate } from "react-router-dom";
+ 
 
 
 function header() {
@@ -25,25 +26,47 @@ function header() {
   return (
     <header className="navbar">
       <div className="navbar_child">
-        <p className="Rooted_title">Rooted</p>
-
         {user?.displayName ? (
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', right: '80px' }}>
-            <motion.button
-              whileHover={{ scale: 0.95 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={handleSignOut}
-              className="login_signin_buttons">Signout</motion.button>
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', marginTop: '10px' }}>
+            <div>
+              <button>
+                {/* <img src={}/> */}
+              </button>
+            </div>
+            <div>
+              <p className = "greeting">Hey!</p>
+              <p className = "userName">{user?.displayName}</p>
+            </div>
+
           </div>
 
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', right: '80px' }}>
-            <motion.button
-              whileHover={{ scale: 0.95 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => navigate('/SignIn_Page')}
-              className="login_signin_buttons">Login/Signup</motion.button>
-          </div>
+          // <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', right: '80px' }}>
+          //   <motion.button
+          //     whileHover={{ scale: 0.95 }}
+          //     whileTap={{ scale: 0.9 }}
+          //     onClick={() => navigate('/SignIn_Page')}
+          //     className="login_signin_buttons2">Login/Signup</motion.button>
+          // </div>
+
+          <>
+            <div>
+              <motion.button
+                whileHover={{ scale: 0.95 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => navigate('/')}
+                className="login_signin_buttons2">Rooted</motion.button>
+            </div>
+
+            <div>
+              <motion.button
+                whileHover={{ scale: 0.95 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={handleSignOut}
+                style={{ right: '80px' }}
+                className="login_signin_buttons2">Signout</motion.button>
+            </div>
+          </>
         )}
 
 

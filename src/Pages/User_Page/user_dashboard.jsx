@@ -120,7 +120,7 @@ function user_dashboard() {
       <LoggedOutComponent/>
     )
   }
-  if (!survey) return <p>No survey found yet.</p>;
+  // if (!survey) return <p>No survey found yet.</p>;
 
   return (
     <>

@@ -1,5 +1,6 @@
 .navbar {
-    background-color: #f8f8f8;
+    /* backdrop-filter: blur(6px);
+  -webkit-backdrop-filter : blur(6px); */
     position: fixed;
     max-height: 80px;
     height: 100%;
@@ -7,6 +8,10 @@
     flex-direction: row;
     width: 100%;
     z-index: 999;
+    border-radius: 50px;
+    margin-top: 10px;
+    /* margin-left: 5px; */
+    /* margin-right: 10px; */
 }
 
 .navbar_child{
@@ -39,6 +44,26 @@
     height: 36px;
     margin-top: 20px;
     border: none
+
+}
+
+.login_signin_buttons2 {
+    background-color: #EAECEB;
+    border-radius: 30px;
+    color: black;
+    padding: 25px 30px;
+    font-weight: 400;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 6px;
+    height: 36px;
+    margin-top: 20px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid white;
+    
 
 }
 
@@ -100,3 +125,15 @@ margin-left: 40px;
     border-radius: 5px;
     width: 100%;
 }
+
+.greeting{
+    color: #A0A0A0;
+}
+
+.userName {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+

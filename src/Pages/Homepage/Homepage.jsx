@@ -45,7 +45,7 @@ function App() {
             <p className='title_description'>A sanctuary for type 3–4 hair. Discover personalized guidance, expert education, and a supportive community.</p>
             <div className='begin_journey_div'>
               <button className='begin_journey_button' onClick={naviagate_to_survey}>Begin Journey</button>
-              <button className='begin_journey_button' style={{ backgroundColor: 'transparent', color: '#6ea2e0', border: "1px solid rgba(0,0,0,0.18)" }}>Explore Gallery</button>
+              {/* <button className='begin_journey_button' style={{ backgroundColor: 'transparent', color: '#6ea2e0', border: "1px solid rgba(0,0,0,0.18)" }}>Explore Gallery</button> */}
             </div>
           </div>
           <div className="hero_card">
@@ -91,7 +91,7 @@ function App() {
               <p className="section3_subtitle" style={{color:'black'}}>Discover looks tailored to your lifestyle.</p>
             </div>
 
-            <button className="section3_viewall_btn">View All Styles</button>
+            {/* <button className="section3_viewall_btn">View All Styles</button> */}
           </div>
 
           <div className="styles_row">
