@@ -8,6 +8,9 @@ import "./styles/find_salon.css"
 import { StarRating } from '@danielgtmn/react-star-rating';
 import fallback_image from "./assets/fallback_image.jpg"
 
+import LoadingComponent from '../../ui/loadingComponent/loadingComponent'
+import LoggedOutComponent from '../../ui/loggedOutComponent/loggedOutComponent'
+
 function search_for_salon() {
     const { user, logOut } = UserAuth();
     const [survey, setSurvey] = useState(null)
@@ -200,7 +203,7 @@ function search_for_salon() {
     }
 
     useEffect(() => {
-        if (!user?.uid) { setRecentSearch ([]); return };
+        if (!user?.uid) { setRecentSearch([]); return };
 
         const recentRef = ref(db, `users/${user.uid}/recentSearches`);
 
@@ -232,13 +235,24 @@ function search_for_salon() {
     }, [user?.uid])
 
 
-    if (loading) return <p style={{ marginTop: '200px' }}>loading</p>
+    if (loading && user || !survey) {
+        return (
+            <LoadingComponent />
+        )
+    }
+
+    if (!user) {
+        return (
+            <LoggedOutComponent />
+        )
+    }
+    // 
 
 
     return (
         <div className='section1_authenticated' style={{ marginBottom: '50px' }}>
             <p className='section1_auth_subtitle'>Find a Salon</p>
-            <p style={{ marginTop: '20px' }}>Use Ai to help find a salon fitted to your current survey data:</p>
+            <p style={{ marginTop: '20px' }}>Search for salons in your area</p>
             {/* <div className='docker_info_box_div'>
                 <div className='docker_info_box'>
                     <p className='info_header'>Your Hair Type:</p>
@@ -310,30 +324,30 @@ function search_for_salon() {
                                     style={{ cursor: "pointer" }}
                                 >
 
-                            <div className='recent_search_salon_images_wrap'>
-                                <img src={firstSalon?.imageUrl || fallback_image} referrerPolicy="no-referrer" className='recent_search_salon_images' />
-                            </div>
+                                    <div className='recent_search_salon_images_wrap'>
+                                        <img src={firstSalon?.imageUrl || fallback_image} referrerPolicy="no-referrer" className='recent_search_salon_images' />
+                                    </div>
 
-                            <div style={{ padding: '5px', display: 'grid'}}>
-                                <p className='recent_card_label'><strong>Search Term: </strong>{item.query}</p>
-                                <p className='recent_card_label'><strong>Location: </strong>{item.location}</p>
-                            </div>
+                                    <div style={{ padding: '5px', display: 'grid' }}>
+                                        <p className='recent_card_label'><strong>Search Term: </strong>{item.query}</p>
+                                        <p className='recent_card_label'><strong>Location: </strong>{item.location}</p>
+                                    </div>
 
-                            </motion.div>
+                                </motion.div>
                             )
                         }
                         )
                     ) : (
-                    <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        style={{ textAlign: 'center', margin: 'auto' }}
-                    >
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                            style={{ textAlign: 'center', margin: 'auto' }}
+                        >
 
-                        <p className='search_loading' style={{marginTop: '30px'}}>No recent searches yet</p>
-                    </motion.div>
+                            <p className='search_loading' style={{ marginTop: '30px' }}>No recent searches yet</p>
+                        </motion.div>
                     )
                     }
                 </div>
@@ -368,8 +382,8 @@ function search_for_salon() {
                 </div> */}
 
                 {searchLoading && salons.length <= 0 ? (
-                    <motion.div 
-                    style={{ textAlign: 'center', marginTop: '100px' }}
+                    <motion.div
+                        style={{ textAlign: 'center', marginTop: '100px' }}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
@@ -379,13 +393,13 @@ function search_for_salon() {
                     </motion.div>
                 ) : salons.length > 0 ? (
                     salons.map((salon, index) => (
-                        <motion.div 
-                        className='salonCards'
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
-                        
+                        <motion.div
+                            className='salonCards'
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+
                         >
                             <div key={index} className='salon_images'>
                                 <img src={salon.imageUrl}
@@ -400,8 +414,8 @@ function search_for_salon() {
                         </motion.div>
                     ))
                 ) : (
-                    <motion.div 
-                    style={{ textAlign: 'center', justifySelf: 'center', marginTop: '50px' }}
+                    <motion.div
+                        style={{ textAlign: 'center', justifySelf: 'center', marginTop: '50px' }}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}

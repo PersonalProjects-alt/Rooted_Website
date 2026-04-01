@@ -14,17 +14,31 @@
     /* margin-right: 10px; */
 }
 
-.navbar_child{
+.navbar_child {
     display: flex;
     justify-content: space-between;
     margin-left: 20px;
     margin-right: 20px;
     width: 100%;
-    
-
 }
 
-.Rooted_title{
+.updated_navbar_div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 50px;
+    width: stretch;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 14px 15px 9px 10px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.Rooted_title {
     font-family: "Montserrat Variable";
     font-size: 30px;
     font-weight: 500;
@@ -44,7 +58,6 @@
     height: 36px;
     margin-top: 20px;
     border: none
-
 }
 
 .login_signin_buttons2 {
@@ -63,19 +76,19 @@
     font-size: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     border: 1px solid white;
-    
+
 
 }
 
-.hamburger{
-margin-top: 15px;
-margin-left: 40px;
+.hamburger {
+    margin-top: 15px;
+    margin-left: 40px;
 }
 
 @media screen and (max-width: 575px) {
-    .hamburger{
-    margin-top: 13px;
-    margin-left: 10px;
+    .hamburger {
+        margin-top: 13px;
+        margin-left: 10px;
     }
 }
 
@@ -103,22 +116,22 @@ margin-left: 40px;
 
 }
 
-.log_out_btn{
-    background:none;
-    border:none;
-    margin:0;
-    padding:0;
+.log_out_btn {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 
 @media screen and (max-width: 410px) {
 
-    .hamburger{
-    margin-left: 1px;
-    margin-top: 15px;
+    .hamburger {
+        margin-left: 1px;
+        margin-top: 15px;
     }
 }
 
-.navbar_line{
+.navbar_line {
     margin-top: 0px;
     margin-bottom: 0px;
     border: 1px solid rgb(0, 0, 0);
@@ -126,7 +139,7 @@ margin-left: 40px;
     width: 100%;
 }
 
-.greeting{
+.greeting {
     color: #A0A0A0;
 }
 
@@ -135,5 +148,9 @@ margin-left: 40px;
     font-weight: 500;
 }
 
-
-
+.userImage {
+    background-color: white;
+    border-radius: 999px;
+    padding: 10px;
+    border: 1px solid white;
+}

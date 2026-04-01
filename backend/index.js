@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true })) //allows the backend to read for
 app.use(express.json())
 
 //enables cross-origin requests
-app.use(cors()) // without this backend cant call backend
+app.use(cors())
 
 const admin = require("firebase-admin")
 const serviceAccount = require("./serviceAccountKey.json") //never expose to front end
@@ -20,12 +20,11 @@ const { circOut } = require("motion/react")
 //Initialize firebase admin (server-side auth verification)
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://auth-rooted-default-rtdb.firebaseio.com/" //your firebase realtime database url
+  databaseURL: "https://auth-rooted-default-rtdb.firebaseio.com/" // firebase realtime database url
 })
 
 
 //AUTH MIDDLEWARE
-
 async function requireAuth(req, res, next) {
   try {
     // Get the Authorization header from the request
@@ -47,7 +46,7 @@ async function requireAuth(req, res, next) {
     // Extract the actual token string
     const idToken = match[1];
 
-    // 🔍 Verify the token with Firebase
+    // Verify the token with Firebase
     // This checks:
     // - Is it real?
     // - Is it expired?
@@ -177,7 +176,7 @@ app.post("/api/salons/search", requireAuth, async (req, res) => {
 })
 
 
-//MAKING SURE THE USER IS AUTHENTICATED BEFORE4 ACCESSING THE CHAT ROUTE
+//MAKING SURE THE USER IS AUTHENTICATED BEFORE ACCESSING THE CHAT ROUTE
 app.post("/api/chat", requireAuth, async (req, res) => {
   try {
     const { message } = req.body;
@@ -206,16 +205,6 @@ app.post("/api/chat", requireAuth, async (req, res) => {
         surveyFound: false,
       });
     }
-
-    // ✅ Placeholder “rules engine” (super basic for now)
-    // Later you’ll replace this with your real deterministic rules
-    // const baseRecommendations = {
-    //   hairType: survey.hairType,
-    //   porosity: survey.porosity,
-    //   lifestyle: survey.lifestyle,
-    //   note: "This is a placeholder response until Ollama is added.",
-    //   safeDefault: "Try lightweight, water-based products first and avoid heavy buildup if you notice residue.",
-    // };
 
     const prompt = `
     SYSTEM:
@@ -259,18 +248,6 @@ app.post("/api/chat", requireAuth, async (req, res) => {
     });
 
     const data = await ollamaResponse.json();
-
-    // // Ollama call result
-    // const reply = `
-    //  Place holder message while AI is still in development 
-    //   `;
-
-    // return res.json({
-    //   reply,
-    //   surveyFound: true,
-    //   profile: survey,
-    //   baseRecommendations,
-    // });
 
     return res.json({
       reply: data.response

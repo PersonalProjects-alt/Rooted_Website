@@ -4,6 +4,7 @@ import styl1 from "../../assets/style1.png"
 import styl2 from "../../assets/style2.png"
 import styl3 from "../../assets/style3.png"
 import styl4 from "../../assets/style4.png"
+import calendar from "../../assets/calendar_clock.png"
 import { UserAuth } from '../../context/AuthContext'
 import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
@@ -19,6 +20,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import loggedOutComponent from '../../ui/loggedOutComponent/loggedOutComponent'
 import LoadingComponent from '../../ui/loadingComponent/loadingComponent'
 import LoggedOutComponent from '../../ui/loggedOutComponent/loggedOutComponent'
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import arrowUp from "../../assets/arrow_up_right.png"
 
 function user_dashboard() {
   const { user, logOut } = UserAuth();
@@ -26,6 +30,11 @@ function user_dashboard() {
   const [loading, setLoading] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
+
+  const percentage1 = 65;
+  const percentage2 = 41;
+  const percentage3 = 30;
+  const percentage4 = 73;
 
   const navigate = useNavigate()
   const recommended_styles = [
@@ -40,7 +49,7 @@ function user_dashboard() {
   }
 
   const callProtectedRoute = async () => {
-    try{
+    try {
       if (!user) return;
 
       //Get Firebase ID token for the currently logged-in user
@@ -63,7 +72,7 @@ function user_dashboard() {
       }
 
       console.log("Protected route response", data);
-    } catch(e){
+    } catch (e) {
       console.error("error calliung protected route", e)
     }
   }
@@ -104,20 +113,22 @@ function user_dashboard() {
   //     <LoadingComponent/>
   //   )
   // }
-  
+
   //   if(loading && showFallback) {
   //   return (
   //     <LoggedOutComponent/>
   //   )
   // } 
-  
-  if (loading && user) {
-    <LoadingComponent/>
+
+  if (loading && user || !survey) {
+    return (
+      <LoadingComponent />
+    )
   }
 
-  if(!user){
+  if (!user) {
     return (
-      <LoggedOutComponent/>
+      <LoggedOutComponent />
     )
   }
   // if (!survey) return <p>No survey found yet.</p>;
@@ -127,7 +138,121 @@ function user_dashboard() {
       {user?.displayName ? (
         <div>
           <div className='section1_authenticated'>
-            <p className='section1_auth_header'>Welcome back,</p>
+            <div className='your_health_box'>
+              <div className='your_health_inner_box'>
+                <motion.button className="userImage"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                  <img src={calendar} width={20} height={20} />
+                </motion.button>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  <p className="userName">Your Hair health</p>
+                  <p className="greeting">Last Scan: Today</p>
+                </motion.div>
+              </div>
+
+              <div className='info_box_div'>
+                <motion.div
+                  className='info_box'
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+
+                >
+                  <p className='info_header'>Hair Moisture:</p>
+                  <div className='sats_div'>
+                    <p className='info_stats'>65%</p>
+                    <div className='progress_bar_div'>
+                      <CircularProgressbar value={percentage1} maxValue={100} />
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className='info_box'
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.9, ease: "easeOut" }}
+                >
+                  <p className='info_header'>Hair Strength:</p>
+                  <div className='sats_div'>
+                    <p className='info_stats'>41%</p>
+                    <div className='progress_bar_div'>
+                      <CircularProgressbar value={percentage2} maxValue={100} />
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className='info_box'
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 1.0, ease: "easeOut" }}
+                >
+                  <p className='info_header'>Split Ends:</p>
+                  <div className='sats_div'>
+                    <p className='info_stats'>30%</p>
+                    <div className='progress_bar_div'>
+                      <CircularProgressbar value={percentage3} maxValue={100} />
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className='info_box'
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 1.1, ease: "easeOut" }}
+                >
+                  <p className='info_header'>Scalp Health:</p>
+                  <div className='sats_div'>
+                    <p className='info_stats'>73%</p>
+                    <div className='progress_bar_div'>
+                      <CircularProgressbar value={percentage4} maxValue={100} />
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className='update_prefernces_parent_div'>
+                <motion.div
+                  className='update_prefernces_div'
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 1.3, ease: "easeOut" }}
+                >
+                  <p>Update Hair Preferences</p>
+                </motion.div>
+
+                <motion.div
+                  className='update_prefernces_div2'
+                  onClick={() => navigate('/survey_stepper')}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 1.3, ease: "easeOut" }}
+                >
+                  <img style={{marginTop: '6px'}} src={arrowUp} width={15} height={15}/>
+                </motion.div>
+
+              </div>
+
+            </div>
+            {/* <p className='section1_auth_header'>Welcome back,</p>
             <p className='section1_auth_subtitle'>{user?.displayName}</p>
             <p className='section1_auth_desc'>Your personalized hair journey dashboard. Explore recommended styles, continue your education, and track your progress.</p>
             <div className='info_box_div'>
@@ -146,10 +271,10 @@ function user_dashboard() {
               <div className='info_box'>
                 <p className='info_header_update' style={{ marginTop: '40px' }}>Update your hair stats</p>
               </div>
-            </div>
+            </div> */}
           </div>
 
-          <Drawer
+          {/* <Drawer
             anchor="bottom"
             open={drawerOpen}
             onClose={() => setDrawerOpen(false)}
@@ -162,7 +287,7 @@ function user_dashboard() {
             }}
           >
             <Box sx={{ p: 2 }}>
-              <div className='bottomMiniBarHandle' style={{justifyContent:'center'}} />
+              <div className='bottomMiniBarHandle' style={{ justifyContent: 'center' }} />
               <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 12 }}>
                 Update your hair stats
               </p>
@@ -183,15 +308,15 @@ function user_dashboard() {
                 Close
               </Button>
             </Box>
-          </Drawer>
+          </Drawer> */}
 
 
           <div className='section2_authenticated'>
             <div style={{ marginLeft: '30px', marginRight: '30px' }}>
-              <p className='section2_header_dash'>Recommended for You</p>
-              <p className='section2_desc_dash'>Hairstyles curated based on your preferences</p>
+              <p className='section2_header_dash'>Suggested Products</p>
+              {/* <p className='section2_desc_dash'>Hairstyles curated based on your preferences</p> */}
 
-              <div>
+              {/* <div>
                 {recommended_styles.map((item, index) => (
                   <motion.div
                     key={index}
@@ -211,13 +336,13 @@ function user_dashboard() {
                   </motion.div>
                 )
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
 
         </div>
       ) : (
-        <LoggedOutComponent/>
+        <LoggedOutComponent />
       )}
     </>
 

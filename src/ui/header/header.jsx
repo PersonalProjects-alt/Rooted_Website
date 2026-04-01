@@ -5,7 +5,9 @@ import { AnimatePresence, motion } from "motion/react"
 import { Link } from "react-router-dom";
 import { UserAuth } from '../../context/AuthContext.jsx'
 import { useNavigate } from "react-router-dom";
- 
+import userImage from "./assets/user.png"
+import notifcationImage from "./assets/notification_img.png"
+
 
 
 function header() {
@@ -27,16 +29,38 @@ function header() {
     <header className="navbar">
       <div className="navbar_child">
         {user?.displayName ? (
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', marginTop: '10px' }}>
+          <div className="updated_navbar_div">
+            <div></div>
             <div>
-              <button>
-                {/* <img src={}/> */}
-              </button>
+              <motion.button className="userImage"
+                onClick={() => navigate('/user_dashboard')}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <img src={userImage} width={20} height={20} />
+              </motion.button>
             </div>
-            <div>
-              <p className = "greeting">Hey!</p>
-              <p className = "userName">{user?.displayName}</p>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <p className="greeting">Hey!</p>
+              <p className="userName">{user?.displayName}</p>
+            </motion.div>
+
+            {/* <motion.button className="userImage"
+              onClick={() => navigate('/user_dashboard')}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <img src={notifcationImage} width={20} height={20} />
+            </motion.button> */}
 
           </div>
 

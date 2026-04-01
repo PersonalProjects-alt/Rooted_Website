@@ -10,6 +10,7 @@ import { ref, set, serverTimestamp } from "firebase/database";
 
 function survey_stepper() {
   const { user, logOut } = UserAuth();
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate()
 
   const signInbtn = async () => {
@@ -20,7 +21,7 @@ function survey_stepper() {
   const [hairType, setHairType] = useState(null);
   const [porosity, setPorosity] = useState(null);
   const [lifestyle, setLifestyle] = useState(null);
-  const [goals, setGoals] = useState(null);
+  const [goals, setGoals] = useState([]);
   const [washTime, setWashTime] = useState(null);
   const [washFrequency, setWashFrequency] = useState(null);
 
@@ -28,11 +29,28 @@ function survey_stepper() {
     if (step === 1) return hairType != null
     if (step === 2) return porosity != null
     if (step === 3) return lifestyle != null
-    if (step === 4) return goals != null
+    if (step === 4) return goals.length > 0
     if (step === 5) return washTime != null
     if (step === 6) return washFrequency != null
     return true
   }
+
+  const toggleGoal = (goal) => {
+  setGoals((prevGoals) => {
+    // remove if already selected
+    if (prevGoals.includes(goal)) {
+      return prevGoals.filter((g) => g !== goal);
+    }
+
+    // stop if already at max
+    if (prevGoals.length >= 4) {
+      return prevGoals;
+    }
+
+    // otherwise add it
+    return [...prevGoals, goal];
+  });
+};
 
   const sendData = async () => {
     if (!user?.uid) return
@@ -153,18 +171,19 @@ function survey_stepper() {
               <p className='stepper_subtitle'>Help us recommend hairstyles that fit your daily routine.</p>
               <div className='stepper_buttons_div' >
                 {(['Moisture Retention', 'Length Retention', 'Reduce Breakage', 'Scalp Health', 'Volume', 'Shine', 'Repair Damage']).map((user_goal) => {
-                  const selected = goals === user_goal
+                  const selected = goals.includes(user_goal);
+                  const maxReached = goals.length >= 4 && !selected; // disable unselected if already 4 selected
                   return (
                     <button
                       key={user_goal}
                       onClick={() => {
-                        setGoals(user_goal);
+                        toggleGoal(user_goal);
                         console.log("set goals to ", user_goal);
                       }}
+                      disabled={maxReached}
                       className={`step_choice_btn ${selected ? "selected" : "disabled"}`} style={{ padding: '25px', height: '18px' }}
                     >
                       {user_goal}
-                      {goals === user_goal}
                     </button>
                   )
 
