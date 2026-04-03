@@ -7,9 +7,4 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   base: "/Rooted_Website",
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
 });
