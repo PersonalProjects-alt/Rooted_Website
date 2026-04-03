@@ -170,9 +170,9 @@ html, body {
 
 .info_header{
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 400;
     color: black;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .info_header_update{

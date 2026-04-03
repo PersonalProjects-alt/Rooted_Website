@@ -235,7 +235,7 @@ function search_for_salon() {
     }, [user?.uid])
 
 
-    if (loading && user || !survey) {
+    if (loading && user || loading && survey) {
         return (
             <LoadingComponent />
         )

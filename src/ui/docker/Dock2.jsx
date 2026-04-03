@@ -11,8 +11,10 @@ import settingImage from "./assets/settings_sliders.png"
 import locationImage from "./assets/marker.png"
 import { House, User, MapPin, SlidersHorizontal, MessageCircle } from "lucide-react";
 
-function Dock2() {
+
+function Dock2({ onOpenDrawer }) {
     const navigate = useNavigate()
+    console.log("onOpenDrawer prop:", onOpenDrawer);
     return (
         <div className="dock-wrapper">
             <div className="dock">
@@ -26,18 +28,15 @@ function Dock2() {
                         <img src={dashbaordImage} height={20} width={20} />
                         {/* <User size={28} strokeWidth={2.2} /> */}
                     </button>
-
-                    <button className="dock-center-btn" onClick={() => navigate('/')}>
-                        <img src={chatImage} height={20} width={20} />
-                        {/* <MessageCircle size={28} strokeWidth={2.2} /> */}
+                    <button className="dock-center-btn" onClick={() => { onOpenDrawer()}}>
+                        <img src={chatImage} height={20} width={20} alt="chat" />
                     </button>
-
                     <button className="dock-item" onClick={() => navigate('/findSalon')}>
                         <img src={locationImage} height={20} width={20} />
                         {/* <MapPin size={28} strokeWidth={2.2} /> */}
                     </button>
                 </div>
-                <button className="dock-item" onClick={() => navigate('/user_dashboard')}>
+                <button className="dock-item" onClick={() => navigate('/settings')}>
                     <img src={settingImage} height={20} width={20} />
                     {/* <SlidersHorizontal size={28} strokeWidth={2.2} /> */}
                 </button>

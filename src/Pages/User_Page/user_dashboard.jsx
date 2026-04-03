@@ -120,11 +120,11 @@ function user_dashboard() {
   //   )
   // } 
 
-  if (loading && user || !survey) {
-    return (
-      <LoadingComponent />
-    )
-  }
+    if (loading && user || loading && survey) {
+        return (
+            <LoadingComponent />
+        )
+    }
 
   if (!user) {
     return (
@@ -312,7 +312,7 @@ function user_dashboard() {
 
 
           <div className='section2_authenticated'>
-            <div style={{ marginLeft: '30px', marginRight: '30px' }}>
+            <div style={{ marginLeft: '30px', marginRight: '30px' }}> 
               <p className='section2_header_dash'>Suggested Products</p>
               {/* <p className='section2_desc_dash'>Hairstyles curated based on your preferences</p> */}
 

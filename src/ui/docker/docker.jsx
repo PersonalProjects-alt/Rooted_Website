@@ -1,4 +1,4 @@
-import Dock from './Dock';
+// import Dock from './Dock';
 import ai_image from './assets/chat.png'
 import home_image from './assets/home.png'
 import dashbaord_image from './assets/dashboard.png'
@@ -17,6 +17,7 @@ import { db } from "../../firebase";
 import { ref, set, serverTimestamp, getDatabase, onValue, get } from "firebase/database";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import LoggedOutComponent from '../loggedOutComponent/loggedOutComponent.jsx';
+import Dock2 from "./Dock2.jsx"
 
 
 function Docker() {
@@ -70,16 +71,12 @@ function Docker() {
   ];
 
 
+
   return (
     <>
-      {drawerOpen ? <div></div> :
-        <Dock
-          items={items}
-          panelHeight={65}
-          baseItemSize={45}
-          magnification={60}
-        />
-      }
+      {!drawerOpen && (
+        <Dock2 onOpenDrawer={() => setDrawerOpen(true)} />
+      )}
 
       {user?.displayName ? (
         <Drawer
@@ -166,7 +163,7 @@ function Docker() {
                 Ai Assistant
               </p>
             </div>
-            <LoggedOutComponent style={{marginBottom: '0px', marginTop: '0px', height:'50vh' }}/>
+            <LoggedOutComponent style={{ marginBottom: '0px', marginTop: '0px', height: '50vh' }} />
             <div>
 
             </div>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { UserAuth } from '../../context/AuthContext.jsx'
 import { useNavigate } from "react-router-dom";
 import userImage from "./assets/user.png"
-import notifcationImage from "./assets/notification_img.png"
+// import notifcationImage from "./assets/notification_img.png"
 
 
 
@@ -86,9 +86,9 @@ function header() {
               <motion.button
                 whileHover={{ scale: 0.95 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={handleSignOut}
+                onClick={() => navigate('/SignIn_Page')}
                 style={{ right: '80px' }}
-                className="login_signin_buttons2">Signout</motion.button>
+                className="login_signin_buttons2">SignIn</motion.button>
             </div>
           </>
         )}

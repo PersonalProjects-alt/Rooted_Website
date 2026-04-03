@@ -9,7 +9,7 @@ export default function Layout() {
     <>
       <Header />
       <Outlet />
-      <Docker2/>
+      <Docker/>
       <Footer/>
     </>
   );
