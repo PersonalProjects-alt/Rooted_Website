@@ -6,5 +6,5 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/Rooted_Website",
+  base: "/rooted-website",
 });
