@@ -25,3 +25,4 @@ dist-ssr
 
 #backend firebase service account key
 backend/serviceAccountKey.json
+backend/.env
