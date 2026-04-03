@@ -17,7 +17,7 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 
-    <BrowserRouter>
+    <BrowserRouter basename="/Rooted_Website">
     <AuthContextProvider>
       <Routes>
         <Route element={<Layout />}>
