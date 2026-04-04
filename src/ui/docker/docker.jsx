@@ -85,7 +85,7 @@ function Docker() {
           onClose={() => setDrawerOpen(false)}
           PaperProps={{
             sx: {
-              height: "90vh",
+              height: "80vh",
               borderTopLeftRadius: 18,
               borderTopRightRadius: 18,
               paddingBottom: 2,
