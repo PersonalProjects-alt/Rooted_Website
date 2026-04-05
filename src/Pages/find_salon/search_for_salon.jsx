@@ -387,7 +387,7 @@ function search_for_salon() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
                     >
                         <p className='search_loading'>Searching for salons</p>
                     </motion.div>
