@@ -60,7 +60,7 @@ function ChatUI() {
         try {
             const token = await user.getIdToken();
 
-            const res = await fetch("http://localhost:4000/api/chat", {
+            const res = await fetch("https://rooted-backend.onrender.com/api/chat", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

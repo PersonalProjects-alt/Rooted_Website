@@ -56,7 +56,7 @@ function user_dashboard() {
       const token = await user.getIdToken();
 
       //Call backend protected route with the token in headers
-      const res = await fetch("http://localhost:4000/api/private", {
+      const res = await fetch("https://rooted-backend.onrender.com/api/private", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

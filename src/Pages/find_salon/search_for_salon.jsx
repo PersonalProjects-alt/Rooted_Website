@@ -121,7 +121,7 @@ function search_for_salon() {
             // if not cached call api
             const token = await user.getIdToken();
 
-            const res = await fetch("http://localhost:4000/api/salons/search", {
+            const res = await fetch("https://rooted-backend.onrender.com/api/salons/search", {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
