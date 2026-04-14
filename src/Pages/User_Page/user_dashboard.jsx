@@ -10,14 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import { ref, set, serverTimestamp, getDatabase, onValue, get } from "firebase/database";
 import { AnimatePresence, motion } from "motion/react"
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import loggedOutComponent from '../../ui/loggedOutComponent/loggedOutComponent'
 import LoadingComponent from '../../ui/loadingComponent/loadingComponent'
 import LoggedOutComponent from '../../ui/loggedOutComponent/loggedOutComponent'
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -107,6 +99,10 @@ function user_dashboard() {
     return () => clearTimeout(timeout); // Cleanup timeout on unmount
   }, [])
 
+  let userGoals = survey?.goals
+  console.log(userGoals)
+  console.log(survey)
+
 
   // if(loading && !showFallback) {
   //   return (
@@ -120,11 +116,11 @@ function user_dashboard() {
   //   )
   // } 
 
-    if (loading && user || loading && survey) {
-        return (
-            <LoadingComponent />
-        )
-    }
+  if (loading && user || loading && survey) {
+    return (
+      <LoadingComponent />
+    )
+  }
 
   if (!user) {
     return (
@@ -161,70 +157,26 @@ function user_dashboard() {
               </div>
 
               <div className='info_box_div'>
-                <motion.div
-                  className='info_box'
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
 
-                >
-                  <p className='info_header'>Hair Moisture:</p>
-                  <div className='sats_div'>
-                    <p className='info_stats'>65%</p>
-                    <div className='progress_bar_div'>
-                      <CircularProgressbar value={percentage1} maxValue={100} />
-                    </div>
-                  </div>
-                </motion.div>
+                {(userGoals || []).map((item, index) => (
+                  <motion.div
+                    key={item}
+                    className='info_box'
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
 
-                <motion.div
-                  className='info_box'
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.9, ease: "easeOut" }}
-                >
-                  <p className='info_header'>Hair Strength:</p>
-                  <div className='sats_div'>
-                    <p className='info_stats'>41%</p>
-                    <div className='progress_bar_div'>
-                      <CircularProgressbar value={percentage2} maxValue={100} />
+                  >
+                    <p className='info_header'>{item}:</p>
+                    <div className='sats_div'>
+                      <p className='info_stats'>65%</p>
+                      <div className='progress_bar_div'>
+                        <CircularProgressbar value={percentage1} maxValue={100} />
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className='info_box'
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 1.0, ease: "easeOut" }}
-                >
-                  <p className='info_header'>Split Ends:</p>
-                  <div className='sats_div'>
-                    <p className='info_stats'>30%</p>
-                    <div className='progress_bar_div'>
-                      <CircularProgressbar value={percentage3} maxValue={100} />
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className='info_box'
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 1.1, ease: "easeOut" }}
-                >
-                  <p className='info_header'>Scalp Health:</p>
-                  <div className='sats_div'>
-                    <p className='info_stats'>73%</p>
-                    <div className='progress_bar_div'>
-                      <CircularProgressbar value={percentage4} maxValue={100} />
-                    </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                ))}
               </div>
 
               <div className='update_prefernces_parent_div'>
@@ -246,7 +198,7 @@ function user_dashboard() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 1.3, ease: "easeOut" }}
                 >
-                  <img style={{marginTop: '6px'}} src={arrowUp} width={15} height={15}/>
+                  <img style={{ marginTop: '6px' }} src={arrowUp} width={15} height={15} />
                 </motion.div>
 
               </div>
@@ -312,7 +264,7 @@ function user_dashboard() {
 
 
           <div className='section2_authenticated'>
-            <div style={{ marginLeft: '30px', marginRight: '30px' }}> 
+            <div style={{ marginLeft: '30px', marginRight: '30px' }}>
               <p className='section2_header_dash'>Suggested Products</p>
               {/* <p className='section2_desc_dash'>Hairstyles curated based on your preferences</p> */}
 

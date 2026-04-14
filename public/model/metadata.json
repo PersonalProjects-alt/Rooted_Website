@@ -1,0 +1,16 @@
+{
+    "tfjsVersion": "1.7.4",
+    "tmVersion": "2.4.12",
+    "packageVersion": "0.8.4-alpha2",
+    "packageName": "@teachablemachine/image",
+    "timeStamp": "2026-04-14T19:02:51.426Z",
+    "userMetadata": {},
+    "modelName": "tm-my-image-model",
+    "labels": [
+        "Straight Hair (Type 1)",
+        "Wavy Hair (Type 2)",
+        "Curly Hair (Type 3)",
+        "Kinky & Coily Hair (Type 4)"
+    ],
+    "imageSize": 224
+}
