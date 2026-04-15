@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as tmImage from '@teachablemachine/image';
+import './hairScanner_style.css'
 
 const HairScanner = ({ onResult }) => {
   const videoRef = useRef(null);
@@ -63,8 +64,7 @@ const HairScanner = ({ onResult }) => {
         autoPlay 
         muted 
         playsInline 
-        width="400" 
-        style={{ borderRadius: '30px', border: '4px solid #f0f0f0' }} 
+        className='video_container'
       />
       <div className="result-overlay">
         <h3>Detected Hair Type: <span style={{ color: '#ff4d4d' }}>{prediction || "Scanning..."}</span></h3>
