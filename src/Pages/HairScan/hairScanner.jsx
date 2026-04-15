@@ -64,7 +64,7 @@ const HairScanner = ({ onResult }) => {
         muted 
         playsInline 
         width="400" 
-        style={{ borderRadius: '15px', border: '4px solid #f0f0f0' }} 
+        style={{ borderRadius: '30px', border: '4px solid #f0f0f0' }} 
       />
       <div className="result-overlay">
         <h3>Detected Hair Type: <span style={{ color: '#ff4d4d' }}>{prediction || "Scanning..."}</span></h3>
