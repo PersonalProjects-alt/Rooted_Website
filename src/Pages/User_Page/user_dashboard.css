@@ -279,6 +279,8 @@ html, body {
     border-radius: 999px;
     padding: 10px 15px 10px 15px;
     width: auto;
+    display: flex;
+    flex-direction: row;
 }
 
 

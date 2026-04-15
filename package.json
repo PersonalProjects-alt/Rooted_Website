@@ -23,6 +23,7 @@
     "@mui/icons-material": "^7.3.7",
     "@mui/material": "^7.3.7",
     "@tailwindcss/vite": "^4.2.0",
+    "@teachablemachine/image": "^0.8.5",
     "@tensorflow-models/mobilenet": "^2.1.1",
     "@tensorflow/tfjs": "^4.22.0",
     "apify-client": "^2.22.2",

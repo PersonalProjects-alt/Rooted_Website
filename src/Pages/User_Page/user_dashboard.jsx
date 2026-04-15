@@ -14,7 +14,7 @@ import LoadingComponent from '../../ui/loadingComponent/loadingComponent'
 import LoggedOutComponent from '../../ui/loggedOutComponent/loggedOutComponent'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import arrowUp from "../../assets/arrow_up_right.png"
+import scan from "../../assets/scan.png"
 
 function user_dashboard() {
   const { user, logOut } = UserAuth();
@@ -192,13 +192,14 @@ function user_dashboard() {
 
                 <motion.div
                   className='update_prefernces_div2'
-                  onClick={() => navigate('/survey_stepper')}
+                  onClick={() => navigate('/hair_scanner')}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 1.3, ease: "easeOut" }}
                 >
-                  <img style={{ marginTop: '6px' }} src={arrowUp} width={15} height={15} />
+                  {/* <p>Hair Scan</p> */}
+                  <img style={{ marginTop: '6px' }} src={scan} width={15} height={15} />
                 </motion.div>
 
               </div>
